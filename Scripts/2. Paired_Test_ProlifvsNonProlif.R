@@ -1,6 +1,7 @@
 #########################
 # Libraries
-#########################
+###########
+##############
 library(dplyr)
 library(tidyr)
 library(purrr)
@@ -10,7 +11,9 @@ library(readr)
 #########################
 # Paths & I/O
 #########################
-base_dir <- "/home/akshay-iyer/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim"
+#base_dir <- "/home/akshay-iyer/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim"
+base_dir <- "C:/Users/ammas/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim"
+getwd()
 in_rds   <- file.path(base_dir, "saved_R_dat", "TB_Flow_Cytokine_DATA_102725_preprocessed_MEDnorm.rds")
 in_csv   <- file.path(base_dir, "saved_R_dat", "TB_Flow_Cytokine_DATA_102725_preprocessed_MEDnorm.csv")
 
@@ -189,7 +192,7 @@ readouts <- cytokine_an %>%
   dplyr::distinct(Readout) %>%
   dplyr::pull(Readout) %>%
   sort()
-#
+
 # Helper to make safe folder/file names from readout labels
 sanitize_for_path <- function(x) {
   x |>
@@ -197,6 +200,40 @@ sanitize_for_path <- function(x) {
     stringr::str_replace_all("[\\s]+", " ") |>         # collapse whitespace
     stringr::str_trim()
 }
+# =========================
+# Build PID-level differences (pid_diffs)
+# =========================
+
+# helper to normalize Prolif_Status exactly like in paired_stats()
+normalize_prolif <- function(x) {
+  x <- stringr::str_squish(x)
+  x <- stringr::str_replace_all(x, "[\u2010-\u2015\u2212]", "-")  # unicode dashes -> "-"
+  dplyr::recode(x, "Non Proliferating" = "Non-Proliferating", .default = x)
+}
+
+pid_diffs <- cytokine_an %>%
+  dplyr::mutate(Prolif_Status = factor(normalize_prolif(Prolif_Status),
+                                       levels = c("Proliferating","Non-Proliferating"))) %>%
+  # If there are replicate rows per PID/Status, summarise first to a single value per side
+  dplyr::group_by(PID, Group, Condition, Compartment, Readout, Prolif_Status) %>%
+  dplyr::summarise(Value_side = median(Value_for_test, na.rm = TRUE), .groups = "drop") %>%
+  tidyr::pivot_wider(
+    names_from  = Prolif_Status,
+    values_from = Value_side,
+    values_fill = NA_real_
+  ) %>%
+  dplyr::mutate(
+    pair_complete = !is.na(Proliferating) & !is.na(`Non-Proliferating`),
+    diff_pp       = Proliferating - `Non-Proliferating`,
+    abs_diff_pp   = abs(diff_pp),
+    direction     = dplyr::case_when(
+      is.na(diff_pp)               ~ NA_character_,
+      diff_pp > 0                  ~ "Proliferating > Non-Proliferating",
+      diff_pp < 0                  ~ "Proliferating < Non-Proliferating",
+      TRUE                         ~ "Equal"
+    )
+  ) %>%
+  dplyr::filter(pair_complete)
 
 # Write per-readout outputs
 purrr::walk(readouts, function(rd) {
@@ -214,6 +251,7 @@ purrr::walk(readouts, function(rd) {
 })
 
 # ========= PLOTTING =========
+# ========= PLOTTING (aligned lines, anti-clipping, dynamic sizing) =========
 library(ggplot2)
 library(glue)
 
@@ -246,38 +284,43 @@ purrr::walk(readouts, function(rd) {
   purrr::pwalk(
     combos,
     function(Group, Condition, Compartment) {
-      df <- data_rd %>%
+      
+      # ------- data prep -------
+      df_raw <- data_rd %>%
         dplyr::filter(Group == !!Group, Condition == !!Condition, Compartment == !!Compartment) %>%
         dplyr::select(PID, Prolif_Status, Value_for_test) %>%
         dplyr::distinct() %>%
-        # --- normalize status & force both levels ---
         dplyr::mutate(
           Prolif_Status = stringr::str_squish(Prolif_Status),
           Prolif_Status = stringr::str_replace_all(Prolif_Status, "[\u2010-\u2015\u2212]", "-"),
           Prolif_Status = dplyr::recode(Prolif_Status,
                                         "Non Proliferating" = "Non-Proliferating",
                                         .default = Prolif_Status),
-          Prolif_Status = factor(Prolif_Status, levels = c("Non-Proliferating","Proliferating"))
+          Prolif_Status = factor(Prolif_Status, levels = c("Non-Proliferating","Proliferating")),
+          Value_for_test = pmin(pmax(Value_for_test, 0), 100)
         )
       
-      # Wide table with both columns guaranteed
-      wide <- df %>%
+      # one value per PID × Status (ensures single point per side)
+      df_plot <- df_raw %>%
+        dplyr::group_by(PID, Prolif_Status) %>%
+        dplyr::summarise(Value_for_test = median(Value_for_test, na.rm = TRUE), .groups = "drop")
+      
+      # wide for pairing & n_pairs; use df_plot so stats match what we draw
+      wide <- df_plot %>%
         tidyr::pivot_wider(
           names_from  = Prolif_Status,
           values_from = Value_for_test,
           values_fill = NA_real_
         )
       
-      # If any status column is missing, create it (rare but safe)
       if (!("Proliferating" %in% names(wide)))         wide$Proliferating <- NA_real_
       if (!("Non-Proliferating" %in% names(wide))) wide$`Non-Proliferating` <- NA_real_
       
-      # keep complete pairs
       wide <- wide %>% dplyr::filter(!is.na(Proliferating), !is.na(`Non-Proliferating`))
       n_pairs <- nrow(wide)
       if (n_pairs < 1) return(invisible(NULL))
       
-      # stats for subtitle (pull from computed stats_all if available)
+      # ------- stats for subtitle -------
       stat_row <- stats_all %>%
         dplyr::filter(Readout == !!rd, Group == !!Group, Condition == !!Condition, Compartment == !!Compartment) %>%
         dplyr::slice(1)
@@ -293,44 +336,113 @@ purrr::walk(readouts, function(rd) {
         padj <- stat_row$p_adj
       }
       
-      subtitle_txt <- glue::glue(
-        "n_pairs = {n_pairs} | median Δ(P − NP) = {round(median_diff, 3)} | p = {signif(pval, 3)}{ifelse(is.na(padj),'', paste0(' | FDR = ', signif(padj,3)))}"
+      # ------- titles (wrapped) & sizing -------
+      title_raw      <- glue("{rd} — {Group} — {Condition} — {Compartment}")
+      title_wrapped  <- stringr::str_wrap(title_raw, width = 70)
+      
+      subtitle_txt   <- glue(
+        "n={n_pairs} | median Δ(P−NP)={round(median_diff, 3)} | p={signif(pval, 3)}",
+        if (!is.na(padj)) glue(" | FDR={signif(padj,3)}") else ""
       )
+      subtitle_wrapped <- stringr::str_wrap(subtitle_txt, width = 85)
       
-      # long format (with normalized status) for plotting
-      df_plot <- df
+      n_title_lines <- max(1, length(unlist(strsplit(title_wrapped, "\n", fixed = TRUE))))
+      n_sub_lines   <- max(1, length(unlist(strsplit(subtitle_wrapped, "\n", fixed = TRUE))))
       
-      # dynamic width
-      w_in <- max(4.5, min(7, 4.5 + 0.05 * n_pairs))
-      h_in <- 4.5
+      w_in <- max(4.8, min(8.5, 4.6 + 0.07 * n_pairs))
+      h_in <- 4.6 + 0.22 * (n_title_lines - 1 + n_sub_lines - 1)
       
-      p <- ggplot2::ggplot(df_plot, ggplot2::aes(x = Prolif_Status, y = Value_for_test, group = PID)) +
-        ggplot2::geom_line(alpha = 0.35) +
-        ggplot2::geom_point(ggplot2::aes(color = Prolif_Status), size = 2) +
-        ggplot2::stat_summary(fun = median, geom = "crossbar", width = 0.5, fatten = 0, alpha = 0.7) +
-        ggplot2::scale_x_discrete(drop = FALSE) +
-        ggplot2::labs(
-          title = glue::glue("{rd} — {Group} — {Condition} — {Compartment}"),
-          subtitle = subtitle_txt,
+      # ------- plot (no jitter; perfect alignment) -------
+      p <- ggplot(df_plot, aes(x = Prolif_Status, y = Value_for_test, group = PID)) +
+        geom_line(alpha = 0.4, linewidth = 0.5, lineend = "round", position = position_identity()) +
+        geom_point(aes(color = Prolif_Status), size = 2, position = position_identity()) +
+        stat_summary(fun = median, geom = "crossbar", width = 0.5, fatten = 0, alpha = 0.85) +
+        scale_x_discrete(drop = FALSE) +
+        coord_cartesian(ylim = c(0, 100), clip = "off") +
+        labs(
+          title = title_wrapped,
+          subtitle = subtitle_wrapped,
           x = NULL,
           y = "% of Parent (batch-normalized)"
         ) +
-        ggplot2::theme_bw(base_size = 12) +
-        ggplot2::theme(
+        theme_bw(base_size = 12) +
+        theme(
           legend.position = "none",
-          plot.title = ggplot2::element_text(face = "bold"),
-          panel.grid.major.x = ggplot2::element_blank()
+          plot.title.position = "plot",
+          plot.title   = element_text(face = "bold", margin = margin(b = 6)),
+          plot.subtitle= element_text(margin = margin(b = 8)),
+          panel.grid.major.x = element_blank(),
+          plot.margin = margin(t = 14, r = 18, b = 14, l = 18, unit = "pt")
         )
       
+      # ------- save -------
       fname <- file.path(
         subdir,
         paste0(
-          sanitize_for_path(glue::glue("{rd}__{Group}__{Condition}__{Compartment}")),
+          sanitize_for_path(glue("{rd}__{Group}__{Condition}__{Compartment}")),
           ".png"
         )
       )
-      ggplot2::ggsave(filename = fname, plot = p, width = w_in, height = h_in, dpi = 300, bg = "white")
+      
+      ggplot2::ggsave(
+        filename = fname, plot = p,
+        width = w_in, height = h_in, units = "in",
+        dpi = 300, bg = "white"
+      )
     }
   )
 })
+
+# ==== Overview Heatmap: Δ(Proliferating − Non-Proliferating) ====
+library(ggplot2)
+library(dplyr)
+library(glue)
+
+# Output dir for overview figs
+overview_dir <- file.path(res_root, "Overviews")
+if (!dir.exists(overview_dir)) dir.create(overview_dir, recursive = TRUE)
+
+# Optional: lock a specific order for facets/conditions
+# stats_all$Group     <- factor(stats_all$Group,     levels = c("Mothers Entry","Mothers Dx","Infants 12wks","Infants 44wks"))
+# stats_all$Condition <- factor(stats_all$Condition, levels = c("BCG","DosR","E6C10","GAG"))
+
+# Basic size heuristics (adjust multipliers if needed)
+n_readouts <- stats_all %>% distinct(Readout) %>% nrow()
+n_groups   <- stats_all %>% distinct(Group)   %>% nrow()
+h_in_heat  <- max(6, 0.14 * n_readouts)   # more readouts -> taller
+w_in_heat  <- 9
+
+# Optional: add a significance flag
+heat_df <- stats_all %>%
+  mutate(sig = !is.na(p_adj) & p_adj < 0.05)
+
+p_heat <- ggplot(
+  heat_df,
+  aes(x = Condition, y = Readout, fill = median_diff_pp)
+) +
+  geom_tile(color = "grey70", linewidth = 0.2) +
+  # optional small dot for significant cells:
+  geom_point(
+    data = subset(heat_df, sig),
+    aes(x = Condition, y = Readout),
+    inherit.aes = FALSE, shape = 21, size = 1.5, stroke = 0.2, fill = "black", alpha = 0.7
+  ) +
+  facet_wrap(~ Group, ncol = 1, scales = "free_y") +
+  scale_fill_viridis_c(option = "plasma", name = "Δ(P−NP)") +
+  labs(
+    title = "Proliferation bias by readout (Δ(Proliferating − Non-Proliferating))",
+    x = NULL, y = NULL
+  ) +
+  theme_bw(base_size = 12) +
+  theme(
+    strip.text = element_text(face = "bold"),
+    axis.text.y = element_text(size = 6),
+    panel.grid = element_blank(),
+    plot.title = element_text(face = "bold", margin = margin(b = 8)),
+    plot.margin = margin(t = 12, r = 16, b = 12, l = 16)
+  )
+
+# Save PNG + PDF
+ggsave(file.path(overview_dir, "Heatmap_DeltaProlif_vs_NonProlif.png"),
+       p_heat, width = 20, height = 14, units = "in", dpi = 300, bg = "white")
 
