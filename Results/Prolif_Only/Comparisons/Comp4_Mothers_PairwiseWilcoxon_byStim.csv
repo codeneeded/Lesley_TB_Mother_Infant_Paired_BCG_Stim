@@ -1,0 +1,751 @@
+Readout,Condition,Metric,DenominatorGate,DenominatorLabel,LineageGate,comp,p
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Neg vs ATB,0.5334165134726944
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs ATB,0.12071603135927819
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs Neg,0.18547453437222422
+CCR6+ CXCR3- / CD161+,BCG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Neg vs ATB,0.7994490996650846
+CCR6+ CXCR3- / CD161+,BCG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs ATB,0.8197075378297883
+CCR6+ CXCR3- / CD161+,BCG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs Neg,0.7994490996650846
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Neg vs ATB,0.640428787412791
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs ATB,0.2614575104092791
+CCR6- CXCR3- / CCR4+,BCG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs Neg,0.2614575104092791
+CD45RO+ CD27+ / CXCR5+,BCG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Neg vs ATB,0.260304518111627
+CD45RO+ CD27+ / CXCR5+,BCG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs ATB,0.38167587396950486
+CD45RO+ CD27+ / CXCR5+,BCG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs Neg,0.8562628961416724
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.2048216795773822
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.640428787412791
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.019097046404885253
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.524506974496592
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,1
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,1
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8001247702090415
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.4128445185711139
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8762696636277617
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.10513382941473097
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8560096715260768
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.17920648015755108
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5261025034906512
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5253020837689435
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.46421431277103153
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.04284707178358266
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.2047424651340039
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.25719030909649104
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.022654494080089353
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.4128445185711139
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5429021503817884
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.648503379652976
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.03336824600203786
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5261025034906512
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5143806181929821
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.46421431277103153
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.04284707178358266
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.2048216795773822
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.04341945724871693
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.0017352777220906693
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.524506974496592
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8001247702090415
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6505003141152003
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.4419566841396139
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.10513382941473097
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.03336824600203786
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.08920547920991366
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5261025034906512
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5261025034906512
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.21854657496297614
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9278369065565704
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4941245444092639
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.35020138917929566
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4136367717412639
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6585558331208018
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.038194092809770507
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8197075378297883
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8562628961416724
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5334165134726944
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6544123932607937
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9606431811191865
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6544123932607937
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.47770655837764087
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8762696636277617
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.7554968749288828
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9278369065565704
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.640428787412791
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4941245444092639
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.35020138917929566
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.648503379652976
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8197075378297883
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.16591811062278455
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8197075378297883
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8562628961416724
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5334165134726944
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6544123932607937
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.648503379652976
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3585736588312958
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.7411868166138958
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9278369065565704
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.31292280890019
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.4941245444092639
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.1715525565987421
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.00457578318221448
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6585558331208018
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5868543600227272
+CD45RO+ CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.8197075378297883
+CD45RO+ CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.8562628961416724
+CD45RO- CD27+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5334165134726944
+CD45RO- CD27-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6544123932607937
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9606431811191865
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.7171527174670546
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.009473661432804016
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.3585736588312958
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.7411868166138958
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9278369065565704
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.1715525565987421
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.9606431811191865
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7554968749288828
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,1
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.24099659677303836
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.1545887601822594
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8272735434825278
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7411868166138958
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.35020138917929566
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.038194092809770507
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.0644402190426376
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.17920648015755108
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.6952985667826368
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,1
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9606431811191865
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.10237123256700195
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,1
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.11890443137760365
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,1
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8562628961416724
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.7411868166138958
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.055872227929479976
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.060358015679639096
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.0644402190426376
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.12071603135927819
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.6778701874186095
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.16591811062278455
+CCR6+ CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,1
+CCR6+ CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.04341945724871693
+CCR6- CXCR3+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,1
+CCR6- CXCR3-,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5239531830908954
+CD107a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.1545887601822594
+HLA-DR+ CD38+,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8562628961416724
+IFNy,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8562628961416724
+IL-17a,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.055872227929479976
+IL-2,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5261025034906512
+IL-21,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5868543600227272
+IL-22,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.415014989725765
+PD-1,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.6778701874186095
+TNFa,BCG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.11174445585895995
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Neg vs ATB,0.8537761957990148
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs ATB,0.8537761957990148
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs Neg,0.8537761957990148
+CCR6+ CXCR3- / CD161+,DosR,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Neg vs ATB,0.1578526235168211
+CCR6+ CXCR3- / CD161+,DosR,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs ATB,0.3365069340882774
+CCR6+ CXCR3- / CD161+,DosR,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs Neg,0.2582203814221202
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Neg vs ATB,0.7240614419074005
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs ATB,0.9119482444395097
+CCR6- CXCR3- / CCR4+,DosR,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs Neg,0.39089606890317
+CD45RO+ CD27+ / CXCR5+,DosR,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Neg vs ATB,0.08884094080219863
+CD45RO+ CD27+ / CXCR5+,DosR,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs ATB,0.08884094080219863
+CD45RO+ CD27+ / CXCR5+,DosR,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs Neg,0.9475470449740259
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5835811785439937
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.4094064835599096
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.12482030086468165
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.4786135950322108
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6295346690680272
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.47943428418824563
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6815735706612813
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.929802739358653
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.2955149967693623
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.30490393930847537
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6960413979259374
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5248630714869413
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.2955149967693623
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6913022863222844
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.3073408407245678
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.25817130271353084
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5835811785439937
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8537761957990148
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.006804082544773785
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.4786135950322108
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.2507495062593992
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.47943428418824563
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5531764082291641
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.929802739358653
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.2955149967693623
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.30490393930847537
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5248630714869413
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.2955149967693623
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6913022863222844
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.3073408407245678
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7963325863081985
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5835811785439937
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.27403984955677224
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.006804082544773785
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6609636986346373
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.2507495062593992
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8094071206269623
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7754759524802628
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.929802739358653
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9475534957826844
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9475534957826844
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6960413979259374
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5248630714869413
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5538411043800002
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9301019215079721
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6926327840419603
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.22339401483859098
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4276354732778289
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.22178416791155772
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.13082583755471952
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6104028013711885
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9119482444395097
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5106708223861569
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9648983574523846
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.3819971730812184
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4385585566709539
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5700552891920261
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.20286037404530255
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.38114433566478145
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4081423703704582
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4786135950322108
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9789763289732477
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.35623933244317935
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4276354732778289
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5803268641112364
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9119482444395097
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.7255637935187347
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9119482444395097
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.2915154683089074
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9648983574523846
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5266709678966057
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4385585566709539
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5700552891920261
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3118482783102824
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8537353611751298
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4081423703704582
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4786135950322108
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9789763289732477
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.35623933244317935
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.965013045725308
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.22178416791155772
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.07175763885016355
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+CD45RO+ CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9119482444395097
+CD45RO+ CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5106708223861569
+CD45RO- CD27+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9648983574523846
+CD45RO- CD27-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.3819971730812184
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5835811785439937
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6769691371486106
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.20286037404530255
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.38114433566478145
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.7421111725343423
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9650001142661959
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9789763289732477
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.35623933244317935
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.9650216587392895
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8953333518420598
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.9650216587392895
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.21654579011256075
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.2715826279816823
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.4094064835599096
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.029017617803761497
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8200723548601512
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.9650063171057915
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7584550052310737
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,1
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.5541131300694455
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8585910717227667
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2955149967693623
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.24177885636720617
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9650216587392895
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2955149967693623
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.530902904215285
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.4094064835599096
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.030332380849158506
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9088179107058416
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9650063171057915
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.534767042976514
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8703298914986384
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.5541131300694455
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8585910717227667
+CCR6+ CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.18707118108421877
+CCR6+ CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.027222467122206336
+CCR6- CXCR3+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.46197711273016495
+CCR6- CXCR3-,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8435630017436775
+CD107a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.2715826279816823
+HLA-DR+ CD38+,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.9475534957826844
+IFNy,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.13029868963439
+IL-17a,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8200723548601512
+IL-2,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.79020559675104185
+IL-21,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.534767042976514
+IL-22,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8703298914986384
+PD-1,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5541131300694455
+TNFa,DosR,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.3127695127775191
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Neg vs ATB,0.10613647243305291
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs ATB,0.31000904181779154
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs Neg,0.19706927521756257
+CCR6+ CXCR3- / CD161+,E6C10,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Neg vs ATB,0.9015386266571278
+CCR6+ CXCR3- / CD161+,E6C10,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs ATB,0.9015386266571278
+CCR6+ CXCR3- / CD161+,E6C10,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs Neg,0.9015386266571278
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Neg vs ATB,0.6865979062500406
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs ATB,1
+CCR6- CXCR3- / CCR4+,E6C10,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs Neg,0.6865979062500406
+CD45RO+ CD27+ / CXCR5+,E6C10,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Neg vs ATB,0.39826558343081064
+CD45RO+ CD27+ / CXCR5+,E6C10,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs ATB,0.8064184798032751
+CD45RO+ CD27+ / CXCR5+,E6C10,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs Neg,0.35069852338619706
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.9735656293894361
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.01782461550168641
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.12704615837680752
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.27172560015046643
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.010234809103091099
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.1363092143816488
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8064184798032751
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.3017674750545587
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.3475800529743893
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.06496221421618795
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7621556317056033
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5797143461568489
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8610521238150397
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6496013650716779
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.43627492884052915
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8115664427207442
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.9735656293894361
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.9720741574280346
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.12704615837680752
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.27172560015046643
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5058602853448533
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8610521238150397
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8064184798032751
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8609160202836601
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.4207267507888874
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8064184798032751
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6077738098339749
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.9163591402734885
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8610521238150397
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.631090126183331
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.43627492884052915
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8115664427207442
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9841653411945137
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.015404948873081664
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.0017872028571130833
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.4625592837537034
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.041365622369982785
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.017407002110875647
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.590410137518447
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.29825233079952734
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.05455854930935246
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.02489641038961377
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6077738098339749
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5797143461568489
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.825039063435073
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5909521461817179
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.43627492884052915
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8115664427207442
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.827009515191582
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.7728299926844475
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6476120502669622
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.735814797438752
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.19056923756521127
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.07888958190788938
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.1752260869517142
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.750619219865488
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.034823291263178485
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.09508058213703184
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6170576246107764
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8363946663119437
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9670927530407483
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9007937160921933
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.038194092809770507
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.3955613429751241
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.827009515191582
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4650135627266873
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.2586140830771998
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.32281067683893516
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.735814797438752
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9163591402734885
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6490437529262908
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8609160202836601
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.750619219865488
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9163591402734885
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5517639051903802
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.7258959177709123
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5856926129111462
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9670927530407483
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.435161516005559
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.09033759173965365
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3955613429751241
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.827009515191582
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.3940218468794684
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.29547607309085894
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.35985410802361106
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.735814797438752
+CD45RO+ CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.19056923756521127
+CD45RO+ CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.019640715060078452
+CD45RO- CD27+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.07439425641577602
+CD45RO- CD27-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.750619219865488
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.013588961421680347
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.022111121879394863
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.16364657989581727
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.8363946663119437
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9670927530407483
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.435161516005559
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.09033759173965365
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.8580913852380816
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.39826558343081064
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7105230229164894
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.868879922389588
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7061030154647306
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.9720741574280346
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.24799581483148536
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.5797143461568489
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.7068158686648962
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.6205593165585457
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.4333060860899735
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.34287293048971584
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,1
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.5918818629302536
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.4827564520442921
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.019405593509009934
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.17264091525410025
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.7061030154647306
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9720741574280346
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.24799581483148536
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.700180350768665
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.1977964518184715
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.1983700275157756
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.11130511699463277
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.29970588651647545
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.1685080887447346
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.29970588651647545
+CCR6+ CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.05441847664436635
+CCR6+ CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.003648284384492422
+CCR6- CXCR3+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.17264091525410025
+CCR6- CXCR3-,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.7061030154647306
+CD107a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.9720741574280346
+HLA-DR+ CD38+,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.015404948873081664
+IFNy,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.40983127764435545
+IL-17a,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.1977964518184715
+IL-2,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.017407002110875647
+IL-21,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.11130511699463277
+IL-22,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.34287293048971584
+PD-1,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.11541977598652164
+TNFa,E6C10,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5576896039448369
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Neg vs ATB,0.9214774580469494
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs ATB,0.9214774580469494
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs Neg,0.9214774580469494
+CCR6+ CXCR3- / CD161+,GAG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Neg vs ATB,0.8640698018455187
+CCR6+ CXCR3- / CD161+,GAG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs ATB,0.8640698018455187
+CCR6+ CXCR3- / CD161+,GAG,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs Neg,0.8640698018455187
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Neg vs ATB,0.9098020428687134
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs ATB,0.9098020428687134
+CCR6- CXCR3- / CCR4+,GAG,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs Neg,0.9098020428687134
+CD45RO+ CD27+ / CXCR5+,GAG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Neg vs ATB,0.7674451175456715
+CD45RO+ CD27+ / CXCR5+,GAG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs ATB,0.6011417476714392
+CD45RO+ CD27+ / CXCR5+,GAG,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs Neg,0.6011417476714392
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,1
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5542277426654022
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6933660252332683
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8167351582026614
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8166960136118783
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8167351582026614
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7445384741286101
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7320561938118022
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7674451175456715
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5710939048729955
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6799149018457198
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7720589697507347
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,1
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,1
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.6703092310662463
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.843713581770668
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.2112288705526147
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.10483757737732266
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6381053049049048
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8166960136118783
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.8167351582026614
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7445384741286101
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7320561938118022
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7674451175456715
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5710939048729955
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6799149018457198
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7720589697507347
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,1
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6703092310662463
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.10483757737732266
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.08308311478356081
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.07155218656514495
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8167351582026614
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8166960136118783
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.8167351582026614
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7320561938118022
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7674451175456715
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5710939048729955
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.15874452941688127
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7720589697507347
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,1
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9719131339533064
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.08308311478356081
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6933660252332683
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9214774580469494
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.843713581770668
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5580697244439299
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.07300757177946252
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6504386114127976
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.4963589827524067
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9214774580469494
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9214774580469494
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.10018597607163526
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5542277426654022
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9855246930704008
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.3740073432758212
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8762696636277617
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.6455340998637686
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6933660252332683
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4618814842193356
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3355961439003539
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6895565822752523
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.027511684156851013
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6504386114127976
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.4963589827524067
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9214774580469494
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9214774580469494
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.2814666511122527
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.26777471188458524
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3740073432758212
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8762696636277617
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.6455340998637686
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6933660252332683
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.4618814842193356
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.3355961439003539
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5580697244439299
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.4513447017070836
+CD45RO+ CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6504386114127976
+CD45RO+ CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+CD45RO- CD27+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+CD45RO- CD27-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.4963589827524067
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9214774580469494
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9214774580469494
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.10018597607163526
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.5536090079451071
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9855246930704008
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.3740073432758212
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.8762696636277617
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6850689949718154
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.17213635097308064
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.6221086446818727
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.27823139406924324
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8207530878829786
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.1828530723185621
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8346941822077297
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.09033877255181494
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.4255388594887003
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.2513710248230224
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.41734709110386486
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.10445356911351714
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.6985353583033387
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.1675806832153483
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.7339584133781933
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.12329074939130574
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.20967515475464532
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8207530878829786
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2610018543593741
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9077531215721959
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.13388735594229262
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.26706878455814614
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.09407953278737449
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.41734709110386486
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.05182467269220181
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.6985353583033387
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.0638741962725167
+CCR6+ CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.17213635097308064
+CCR6+ CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.12329074939130574
+CCR6- CXCR3+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.27823139406924324
+CCR6- CXCR3-,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8207530878829786
+CD107a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,1
+HLA-DR+ CD38+,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.9077531215721959
+IFNy,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.643011484398551
+IL-17a,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.4255388594887003
+IL-2,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.33899095480519487
+IL-21,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.728126128172033
+IL-22,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.10445356911351714
+PD-1,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.6985353583033387
+TNFa,GAG,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.0638741962725167
+CCR6- CXCR3- / CCR4+,MED,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Neg vs ATB,0.2893585296408078
+CCR6- CXCR3- / CCR4+,MED,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs ATB,0.2893585296408078
+CCR6- CXCR3- / CCR4+,MED,Freq. of Grandparent,Proliferating,Freq. of Grandparent: Proliferating,CD4,Pos vs Neg,0.8892725315004424
+CCR6+ CXCR3- / CD161+,MED,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Neg vs ATB,0.37169662996125497
+CCR6+ CXCR3- / CD161+,MED,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs ATB,0.37169662996125497
+CCR6+ CXCR3- / CD161+,MED,Freq. of Parent,CCR6+ CXCR3-,Freq. of Parent: CCR6+ CXCR3-,CD4,Pos vs Neg,0.37169662996125497
+CCR6- CXCR3- / CCR4+,MED,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Neg vs ATB,0.1470862530583906
+CCR6- CXCR3- / CCR4+,MED,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs ATB,0.1470862530583906
+CCR6- CXCR3- / CCR4+,MED,Freq. of Parent,CCR6- CXCR3-,Freq. of Parent: CCR6- CXCR3-,CD4,Pos vs Neg,0.6906400827799861
+CD45RO+ CD27+ / CXCR5+,MED,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Neg vs ATB,0.9007937160921933
+CD45RO+ CD27+ / CXCR5+,MED,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs ATB,0.7315013507663589
+CD45RO+ CD27+ / CXCR5+,MED,Freq. of Parent,CD45RO+ CD27+,Freq. of Parent: CD45RO+ CD27+,CD4,Pos vs Neg,0.3835125423566974
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.9525209600525544
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.023532916031540285
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.21584790067422724
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8360285249706836
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.8366374024005889
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.26031933268177976
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5225786803546966
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.634363033968218
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.3228897829459161
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.13812687360590944
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.03406565933459001
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.32377185101134087
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.13800574231323548
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.5912091957929477
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.7554968749288828
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Neg vs ATB,0.07888958190788938
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.9300271254533746
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.023532916031540285
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.08980020641060997
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7573668301760508
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.631090126183331
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.26031933268177976
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5225786803546966
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.6201216120815196
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.3508674887936985
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.13812687360590944
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.03406565933459001
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.32377185101134087
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.13800574231323548
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.5912091957929477
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7554968749288828
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs ATB,0.7527138062630525
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.9525209600525544
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.3934233854286187
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.09730499437785337
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7573668301760508
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.631090126183331
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6480424001516926
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.5225786803546966
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6201216120815196
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.3508674887936985
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6338047232960475
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.6757515103185655
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.512497079202056
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.35067312547313384
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7452506750591963
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.7554968749288828
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD4,Pos vs Neg,0.07888958190788938
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.13802995537943105
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.06731126276150999
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.07196666823507512
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9660150358997506
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.09579847316939549
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9720741574280346
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.5786413077076902
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.9711776789862251
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.8264635907760222
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.023530049421487495
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.7879749691399361
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.564352873400842
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.06321725058673464
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,1
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Neg vs ATB,0.22721717395944677
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.3849091321023968
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.06731126276150999
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.07196666823507512
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9660150358997506
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.22620170169472942
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9720741574280346
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.5786413077076902
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.9711776789862251
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8264635907760222
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.08825182039792698
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.8063246677608719
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.564352873400842
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.06321725058673464
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,1
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs ATB,0.330724344735046
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.25773313304296264
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6336335392802104
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.63349641950749
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9660150358997506
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.31139253690546675
+CD45RO+ CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9720741574280346
+CD45RO+ CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.968304968385005
+CD45RO- CD27+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+CD45RO- CD27-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.9711776789862251
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.842582539060986
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.21939819884130934
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.7879749691399361
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.888141715510086
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.6013664283838145
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,1
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,CD8,Pos vs Neg,0.4622429575599668
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.3864762307712326
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.056223410368790035
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.38113847513042254
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.07691683504606667
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.2928463064555731
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.3475800529743893
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.02812430537830466
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.8994091684399419
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.2928463064555731
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.48071028602447574
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,1
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.2416874239335777
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Neg vs ATB,0.08131230011441605
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.3864762307712326
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8610181353924964
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.4271696468992899
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9720465330572092
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2928463064555731
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.3475800529743893
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.1983700275157756
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.8994091684399419
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2928463064555731
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.6987608018902023
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.595051379725862
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.2416874239335777
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs ATB,0.9163591402734885
+CCR6+ CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.11143791274586803
+CCR6+ CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.0741106866105844
+CCR6- CXCR3+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.4271696468992899
+CCR6- CXCR3-,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.07691683504606667
+CD107a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.5649085443053756
+HLA-DR+ CD38+,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.7659271287306254
+IFNy,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.4389088631018378
+IL-17a,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8994091684399419
+IL-2,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.6196985099138319
+IL-21,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.48071028602447574
+IL-22,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.2727473834066163
+PD-1,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.8877742436200268
+TNFa,MED,Freq. of Parent,Proliferating,Freq. of Parent: Proliferating,gd TCR,Pos vs Neg,0.08131230011441605
