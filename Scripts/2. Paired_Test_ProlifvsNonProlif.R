@@ -1136,7 +1136,7 @@ if (nrow(comp2) > 0) {
     dplyr::group_by(Time_Point_std, Condition) %>%
     dplyr::arrange(dplyr::desc(abs(median_diff_pp)), .by_group = TRUE) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR")))
+    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR","MED")))
   
   h_in <- compute_heatmap_height(comp2_hm, facet_vars = c("Time_Point_std"), row_label_col = "Readout_label")
   
@@ -1189,7 +1189,7 @@ if (nrow(comp3) > 0) {
     dplyr::group_by(Time_Point_std, Condition) %>%
     dplyr::arrange(dplyr::desc(abs(median_diff_pp)), .by_group = TRUE) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR")))
+    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR","MED")))
   
   h_in <- compute_heatmap_height(comp3_hm, facet_vars = c("Time_Point_std"), row_label_col = "Readout_label")
   
@@ -1240,7 +1240,7 @@ if (exists("comp4_overall") && nrow(comp4_overall) > 0) {
     top_n      = 30,
     alpha      = 0.05
   ) %>%
-    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR"))) %>%
+    dplyr::mutate(Condition = factor(Condition, levels = c("BCG", "DosR","GAG","E6C10","MED"))) %>%
     dplyr::group_by(Condition) %>%
     dplyr::arrange(kw_p, .by_group = TRUE) %>%
     dplyr::ungroup()
