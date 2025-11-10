@@ -311,90 +311,109 @@ plasma_test <- plasma_work %>%
   ) %>%
   filter(!is.na(Y))
 
-## ---------- helper: paired stats (Infants 12 vs 44 wks) ----------
+## ---------- helper: paired stats (Infants 12 vs 44 wks) WITH MEDIANS ----------
 paired_stats_12v44 <- function(df) {
   # df is filtered to Group==Infant & Timepoint in c("12 Wks","44 Wks")
   w <- df %>%
-    select(PID, Analyte, Timepoint, Y) %>%
-    filter(Timepoint %in% c("12 Wks","44 Wks")) %>%
-    group_by(Analyte, PID) %>%
-    filter(n_distinct(Timepoint) == 2) %>%
-    ungroup() %>%
-    pivot_wider(names_from = Timepoint, values_from = Y)
+    dplyr::select(PID, Analyte, Timepoint, Y) %>%
+    dplyr::filter(Timepoint %in% c("12 Wks","44 Wks")) %>%
+    dplyr::group_by(Analyte, PID) %>%
+    dplyr::filter(dplyr::n_distinct(Timepoint) == 2) %>%
+    dplyr::ungroup() %>%
+    tidyr::pivot_wider(names_from = Timepoint, values_from = Y)
   
   if (!all(c("12 Wks","44 Wks") %in% names(w))) {
-    return(tibble(
-      Analyte = character(), n_pairs = integer(), median_diff_44minus12 = numeric(),
+    return(tibble::tibble(
+      Analyte = character(), n_pairs = integer(),
+      median_12Wks = numeric(), median_44Wks = numeric(),
+      median_diff_44minus12 = numeric(),
       p_value = numeric(), p_adj = numeric(), test = character()
     ))
   }
   
-  w <- w %>% filter(!is.na(`12 Wks`), !is.na(`44 Wks`))
+  w <- w %>% dplyr::filter(!is.na(`12 Wks`), !is.na(`44 Wks`))
+  
   by_analyte <- w %>%
-    group_split(Analyte, .keep = TRUE) %>%
-    map_dfr(function(xx) {
+    dplyr::group_split(Analyte, .keep = TRUE) %>%
+    purrr::map_dfr(function(xx) {
       a <- unique(xx$Analyte)
       if (nrow(xx) < 2) {
-        return(tibble(Analyte = a, n_pairs = nrow(xx), median_diff_44minus12 = NA_real_,
-                      p_value = NA_real_, p_adj = NA_real_, test = "paired_wilcox"))
+        return(tibble::tibble(
+          Analyte = a, n_pairs = nrow(xx),
+          median_12Wks = stats::median(xx$`12 Wks`, na.rm = TRUE),
+          median_44Wks = stats::median(xx$`44 Wks`, na.rm = TRUE),
+          median_diff_44minus12 = stats::median(xx$`44 Wks` - xx$`12 Wks`, na.rm = TRUE),
+          p_value = NA_real_, p_adj = NA_real_, test = "paired_wilcox"
+        ))
       }
-      wt <- suppressWarnings(wilcox.test(xx$`44 Wks`, xx$`12 Wks`, paired = TRUE, exact = FALSE))
-      tibble(
+      wt <- suppressWarnings(stats::wilcox.test(xx$`44 Wks`, xx$`12 Wks`, paired = TRUE, exact = FALSE))
+      tibble::tibble(
         Analyte = a,
         n_pairs = nrow(xx),
-        median_diff_44minus12 = median(xx$`44 Wks` - xx$`12 Wks`, na.rm = TRUE),
+        median_12Wks = stats::median(xx$`12 Wks`, na.rm = TRUE),
+        median_44Wks = stats::median(xx$`44 Wks`, na.rm = TRUE),
+        median_diff_44minus12 = stats::median(xx$`44 Wks` - xx$`12 Wks`, na.rm = TRUE),
         p_value = wt$p.value,
         test = "paired_wilcox"
       )
     }) %>%
-    mutate(p_adj = p.adjust(p_value, method = "BH"))
+    dplyr::mutate(p_adj = p.adjust(p_value, method = "BH"))
   
   by_analyte
 }
 
-## ---------- helper: unpaired stats for a 2-level factor ----------
+## ---------- helper: unpaired stats (2-level) WITH MEDIANS ----------
 unpaired_stats_twolevel <- function(df, grp_var, lvl_a = "Pos", lvl_b = "Neg", label = "") {
-  # df contains columns: Analyte, Y, PID, and a grouping column (grp_var)
   stopifnot(grp_var %in% names(df))
+  
   dat <- df %>%
-    filter(!is.na(.data[[grp_var]])) %>%
-    mutate(Comp = .data[[grp_var]]) %>%
-    filter(Comp %in% c(lvl_a, lvl_b))
+    dplyr::filter(!is.na(.data[[grp_var]])) %>%
+    dplyr::mutate(Comp = .data[[grp_var]]) %>%
+    dplyr::filter(Comp %in% c(lvl_a, lvl_b))
   
   if (nrow(dat) == 0) {
-    return(tibble(
-      Contrast = character(), Analyte = character(), n_A = integer(), n_B = integer(),
-      median_diff_AminusB = numeric(), p_value = numeric(), p_adj = numeric(), test = character()
+    return(tibble::tibble(
+      Contrast = character(), Analyte = character(),
+      n_A = integer(), n_B = integer(),
+      median_A = numeric(), median_B = numeric(),
+      median_diff_AminusB = numeric(),
+      p_value = numeric(), p_adj = numeric(), test = character()
     ))
   }
   
   by_analyte <- dat %>%
-    group_split(Analyte, .keep = TRUE) %>%
-    map_dfr(function(xx) {
+    dplyr::group_split(Analyte, .keep = TRUE) %>%
+    purrr::map_dfr(function(xx) {
       a <- unique(xx$Analyte)
-      xa <- xx %>% filter(Comp == lvl_a) %>% pull(Y)
-      xb <- xx %>% filter(Comp == lvl_b) %>% pull(Y)
+      xa <- xx %>% dplyr::filter(Comp == lvl_a) %>% dplyr::pull(Y)
+      xb <- xx %>% dplyr::filter(Comp == lvl_b) %>% dplyr::pull(Y)
+      
       if (length(xa) < 2 || length(xb) < 2) {
-        return(tibble(
-          Contrast = label, Analyte = a, n_A = length(xa), n_B = length(xb),
-          median_diff_AminusB = NA_real_, p_value = NA_real_, p_adj = NA_real_, test = "wilcox_unpaired"
+        return(tibble::tibble(
+          Contrast = label, Analyte = a,
+          n_A = length(xa), n_B = length(xb),
+          median_A = stats::median(xa, na.rm = TRUE),
+          median_B = stats::median(xb, na.rm = TRUE),
+          median_diff_AminusB = stats::median(xa, na.rm = TRUE) - stats::median(xb, na.rm = TRUE),
+          p_value = NA_real_, p_adj = NA_real_, test = "wilcox_unpaired"
         ))
       }
-      wt <- suppressWarnings(wilcox.test(xa, xb, paired = FALSE, exact = FALSE))
-      tibble(
-        Contrast = label,
-        Analyte = a,
-        n_A = length(xa),
-        n_B = length(xb),
-        median_diff_AminusB = median(xa, na.rm = TRUE) - median(xb, na.rm = TRUE),
-        p_value = wt$p.value,
-        test = "wilcox_unpaired"
+      
+      wt <- suppressWarnings(stats::wilcox.test(xa, xb, paired = FALSE, exact = FALSE))
+      tibble::tibble(
+        Contrast = label, Analyte = a,
+        n_A = length(xa), n_B = length(xb),
+        median_A = stats::median(xa, na.rm = TRUE),
+        median_B = stats::median(xb, na.rm = TRUE),
+        median_diff_AminusB = stats::median(xa, na.rm = TRUE) - stats::median(xb, na.rm = TRUE),
+        p_value = wt$p.value, test = "wilcox_unpaired"
       )
     }) %>%
-    mutate(p_adj = p.adjust(p_value, method = "BH"))
+    dplyr::mutate(p_adj = p.adjust(p_value, method = "BH"))
   
   by_analyte
 }
+
 
 ## 3) Run the four comparisons
 
@@ -444,3 +463,285 @@ message("Step B complete. CSVs written to:\n",
         " - ", cmp2_dir, "\n",
         " - ", cmp3_dir, "\n",
         " - ", cmp4_dir)
+
+# ---- Step C1: plotting setup ----
+
+# Root for plots (Windows)
+plot_root <- "C:/Users/ammas/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim/Plasma_Plots"
+if (!dir.exists(plot_root)) dir.create(plot_root, recursive = TRUE)
+
+# Subfolders per comparison
+dir_cmp_12v44   <- file.path(plot_root, "Infants_12vs44_paired")
+dir_cmp_i_mIGRA <- file.path(plot_root, "Infants_byMaternalIGRA")
+dir_cmp_i_iIGRA <- file.path(plot_root, "Infants_byInfantIGRA")
+dir_cmp_m_mIGRA <- file.path(plot_root, "Mothers_byMaternalIGRA")
+for (d in c(dir_cmp_12v44, dir_cmp_i_mIGRA, dir_cmp_i_iIGRA, dir_cmp_m_mIGRA)) {
+  if (!dir.exists(d)) dir.create(d, recursive = TRUE)
+}
+
+# Helper: safe filenames
+sanitize_for_path <- function(x) {
+  x %>%
+    str_replace_all("[\\/:*?\"<>|]", "_") %>%
+    str_squish()
+}
+
+# Helper: compact subtitle with n and (optional) stats
+mk_subtitle <- function(n_a = NA, n_b = NA, n_pairs = NA, p = NA, fdr = NA) {
+  bits <- c()
+  if (!is.na(n_pairs)) bits <- c(bits, glue("n_pairs = {n_pairs}"))
+  if (!is.na(n_a) && !is.na(n_b)) bits <- c(bits, glue("n = {n_a} vs {n_b}"))
+  if (!is.na(p))   bits <- c(bits, glue("p = {signif(p, 3)}"))
+  if (!is.na(fdr)) bits <- c(bits, glue("FDR = {signif(fdr, 3)}"))
+  paste(bits, collapse = " | ")
+}
+
+# A clean default theme
+theme_plasma <- function(base_size = 12) {
+  theme_bw(base_size = base_size) %+replace%
+    theme(
+      plot.title = element_text(face = "bold"),
+      panel.grid.major.x = element_blank(),
+      legend.position = "none"
+    )
+}
+
+# Geoms we’ll re-use
+geom_summary_crossbar <- function(width = 0.5) {
+  stat_summary(fun = median, geom = "crossbar", width = width, fatten = 0, alpha = 0.8)
+}
+
+# We will plot on Z-scores for comparability across analytes and timepoints
+plasma_plot_data <- plasma_work %>%
+  filter(Flag == "OK", !is.na(Value_z))
+# ---- Step C2: Infants 12 vs 44 weeks (paired) ----
+analytes <- sort(unique(plasma_plot_data$Analyte))
+
+purrr::walk(analytes, function(ana) {
+  df <- plasma_plot_data %>%
+    dplyr::filter(
+      Group == "Infant",
+      TP %in% c("12 Wks", "44 Wks"),
+      Analyte == !!ana
+    ) %>%
+    dplyr::select(PID, TP, Analyte, Value_z) %>%
+    dplyr::distinct()
+
+  # Build paired matrix
+  wide <- tidyr::pivot_wider(df, names_from = TP, values_from = Value_z)
+  wide <- dplyr::filter(wide, !is.na(`12 Wks`), !is.na(`44 Wks`))
+
+  n_pairs <- nrow(wide)
+  if (n_pairs < 3) {
+    message(glue::glue("Skip {ana}: not enough pairs (n_pairs={n_pairs})"))
+    return(invisible(NULL))
+  }
+
+  # Paired Wilcoxon (44 - 12)
+  wt <- suppressWarnings(stats::wilcox.test(wide$`44 Wks`, wide$`12 Wks`, paired = TRUE, exact = FALSE))
+  med_delta <- stats::median(wide$`44 Wks` - wide$`12 Wks`, na.rm = TRUE)
+
+  # Rebuild long for plotting
+  df_plot <- wide %>%
+    tidyr::pivot_longer(cols = c("12 Wks", "44 Wks"), names_to = "TP", values_to = "Value_z") %>%
+    dplyr::mutate(TP = factor(TP, levels = c("12 Wks","44 Wks")))
+
+  # Dynamic width by number of pairs
+  w_in <- max(4.8, min(7.5, 4.8 + 0.05 * n_pairs))
+  h_in <- 4.8
+
+  p <- ggplot(df_plot, aes(x = TP, y = Value_z, group = PID)) +
+    geom_line(alpha = 0.35) +
+    geom_point(aes(color = TP), size = 2) +
+    geom_summary_crossbar() +
+    scale_x_discrete(drop = FALSE) +
+    labs(
+      title = glue::glue("{ana} — Infants: 12 vs 44 weeks (paired)"),
+      subtitle = mk_subtitle(n_pairs = n_pairs, p = wt$p.value),
+      x = NULL,
+      y = "Z-score (standardized within timepoint)"
+    ) +
+    theme_plasma() +
+    theme(
+      plot.title = element_text(size = 13, face = "bold", margin = margin(b = 6)),
+      plot.subtitle = element_text(size = 10, color = "gray25")
+    )
+  
+
+  out_name <- file.path(
+    dir_cmp_12v44,
+    paste0(sanitize_for_path(glue::glue("{ana}__Infants_12vs44_paired")), ".png")
+  )
+  ggsave(out_name, p, width = w_in, height = h_in, dpi = 300, bg = "white")
+})
+#### C2b) Infants — Maternal IGRA (Pos vs Neg), unpaired, plotted per analyte × timepoint
+# ---- paths ----
+cmp2_plotdir <- file.path(out_root, "Infants_byMaternalIGRA", "plots")
+if (!dir.exists(cmp2_plotdir)) dir.create(cmp2_plotdir, recursive = TRUE)
+
+# ---- helper (local) ----
+mk_subtitle <- function(nA, nB, p, fdr = NA_real_) {
+  glue::glue("n_Pos = {nA} | n_Neg = {nB} | p = {signif(p, 3)}{ifelse(is.na(fdr),'', paste0(' | FDR = ', signif(fdr,3)))}")
+}
+
+# ---- plotting loop ----
+analytes <- sort(unique(plasma_test$Analyte))
+timepoints <- c("12 Wks","44 Wks")
+
+purrr::walk(analytes, function(ana) {
+  purrr::walk(timepoints, function(tp) {
+    df <- plasma_test %>%
+      dplyr::filter(Group == "Infant",
+                    Timepoint == tp,
+                    Analyte == ana,
+                    !is.na(.data[[igra_m_col]]),
+                    .data[[igra_m_col]] %in% c("Pos","Neg"))
+    
+    if (nrow(df) < 4) return(invisible(NULL))
+    
+    # Wilcoxon (unpaired)
+    xa <- df %>% dplyr::filter(.data[[igra_m_col]] == "Pos") %>% dplyr::pull(Y)
+    xb <- df %>% dplyr::filter(.data[[igra_m_col]] == "Neg") %>% dplyr::pull(Y)
+    if (length(xa) < 2 || length(xb) < 2) return(invisible(NULL))
+    wt <- suppressWarnings(wilcox.test(xa, xb, paired = FALSE, exact = FALSE))
+    
+    # dynamic width by sample size
+    nA <- length(xa); nB <- length(xb)
+    w_in <- max(4.8, min(7, 4.5 + 0.02 * (nA + nB)))
+    h_in <- 4.5
+    
+    p <- ggplot(df, aes(x = .data[[igra_m_col]], y = Y)) +
+      geom_boxplot(width = 0.55, outlier.shape = NA, alpha = 0.6) +
+      ggplot2::geom_point(
+        position = position_jitter(width = 0.1, height = 0),
+        size = 1.9, alpha = 0.75, aes(color = .data[[igra_m_col]])
+      ) +
+      geom_summary_crossbar() +
+      scale_x_discrete(limits = c("Neg","Pos"), drop = FALSE) +
+      labs(
+        title = glue::glue("{ana} — Infants ({tp}) — Maternal IGRA"),
+        subtitle = mk_subtitle(nA, nB, wt$p.value),
+        x = NULL,
+        y = "log1p(pg/ml) (per-TP standardized input)"
+      ) +
+      theme_plasma() +
+      theme(
+        plot.title = element_text(size = 13, face = "bold", margin = margin(b = 6)),
+        plot.subtitle = element_text(size = 10, color = "gray25"),
+        legend.position = "none"
+      )
+    
+    fname <- file.path(
+      cmp2_plotdir,
+      sanitize_for_path(glue::glue("{ana}__Infants__{tp}__MaternalIGRA.png"))
+    )
+    ggsave(fname, p, width = w_in, height = h_in, dpi = 300, bg = "white")
+  })
+})
+
+### C2c) Infants — Infant IGRA (Pos vs Neg), unpaired, plotted per analyte × timepoint
+# ---- paths ----
+cmp3_plotdir <- file.path(out_root, "Infants_byInfantIGRA", "plots")
+if (!dir.exists(cmp3_plotdir)) dir.create(cmp3_plotdir, recursive = TRUE)
+
+purrr::walk(analytes, function(ana) {
+  purrr::walk(timepoints, function(tp) {
+    df <- plasma_test %>%
+      dplyr::filter(Group == "Infant",
+                    Timepoint == tp,
+                    Analyte == ana,
+                    !is.na(.data[[igra_i_col]]),
+                    .data[[igra_i_col]] %in% c("Pos","Neg"))
+    
+    if (nrow(df) < 4) return(invisible(NULL))
+    
+    xa <- df %>% dplyr::filter(.data[[igra_i_col]] == "Pos") %>% dplyr::pull(Y)
+    xb <- df %>% dplyr::filter(.data[[igra_i_col]] == "Neg") %>% dplyr::pull(Y)
+    if (length(xa) < 2 || length(xb) < 2) return(invisible(NULL))
+    wt <- suppressWarnings(wilcox.test(xa, xb, paired = FALSE, exact = FALSE))
+    
+    nA <- length(xa); nB <- length(xb)
+    w_in <- max(4.8, min(7, 4.5 + 0.02 * (nA + nB)))
+    h_in <- 4.5
+    
+    p <- ggplot(df, aes(x = .data[[igra_i_col]], y = Y)) +
+      geom_boxplot(width = 0.55, outlier.shape = NA, alpha = 0.6) +
+      ggplot2::geom_point(
+        position = position_jitter(width = 0.1, height = 0),
+        size = 1.9, alpha = 0.75, aes(color = .data[[igra_i_col]])
+      ) +
+      geom_summary_crossbar() +
+      scale_x_discrete(limits = c("Neg","Pos"), drop = FALSE) +
+      labs(
+        title = glue::glue("{ana} — Infants ({tp}) — Infant IGRA"),
+        subtitle = mk_subtitle(nA, nB, wt$p.value),
+        x = NULL,
+        y = "log1p(pg/ml) (per-TP standardized input)"
+      ) +
+      theme_plasma() +
+      theme(
+        plot.title = element_text(size = 13, face = "bold", margin = margin(b = 6)),
+        plot.subtitle = element_text(size = 10, color = "gray25"),
+        legend.position = "none"
+      )
+    
+    fname <- file.path(
+      cmp3_plotdir,
+      sanitize_for_path(glue::glue("{ana}__Infants__{tp}__InfantIGRA.png"))
+    )
+    ggsave(fname, p, width = w_in, height = h_in, dpi = 300, bg = "white")
+  })
+})
+
+
+### C2d) Mothers — Maternal IGRA (Pos vs Neg), unpaired, plotted per analyte (Entry only)
+# ---- paths ----
+cmp4_plotdir <- file.path(out_root, "Mothers_byMaternalIGRA", "plots")
+if (!dir.exists(cmp4_plotdir)) dir.create(cmp4_plotdir, recursive = TRUE)
+
+purrr::walk(analytes, function(ana) {
+  df <- plasma_test %>%
+    dplyr::filter(Group == "Mother",
+                  Timepoint == "Entry",
+                  Analyte == ana,
+                  !is.na(.data[[igra_m_col]]),
+                  .data[[igra_m_col]] %in% c("Pos","Neg"))
+  
+  if (nrow(df) < 4) return(invisible(NULL))
+  
+  xa <- df %>% dplyr::filter(.data[[igra_m_col]] == "Pos") %>% dplyr::pull(Y)
+  xb <- df %>% dplyr::filter(.data[[igra_m_col]] == "Neg") %>% dplyr::pull(Y)
+  if (length(xa) < 2 || length(xb) < 2) return(invisible(NULL))
+  wt <- suppressWarnings(wilcox.test(xa, xb, paired = FALSE, exact = FALSE))
+  
+  nA <- length(xa); nB <- length(xb)
+  w_in <- max(4.8, min(7, 4.5 + 0.02 * (nA + nB)))
+  h_in <- 4.5
+  
+  p <- ggplot(df, aes(x = .data[[igra_m_col]], y = Y)) +
+    geom_boxplot(width = 0.55, outlier.shape = NA, alpha = 0.6) +
+    ggplot2::geom_point(
+      position = position_jitter(width = 0.1, height = 0),
+      size = 1.9, alpha = 0.75, aes(color = .data[[igra_m_col]])
+    ) +
+    geom_summary_crossbar() +
+    scale_x_discrete(limits = c("Neg","Pos"), drop = FALSE) +
+    labs(
+      title = glue::glue("{ana} — Mothers (Entry) — Maternal IGRA"),
+      subtitle = mk_subtitle(nA, nB, wt$p.value),
+      x = NULL,
+      y = "log1p(pg/ml) (per-TP standardized input)"
+    ) +
+    theme_plasma() +
+    theme(
+      plot.title = element_text(size = 13, face = "bold", margin = margin(b = 6)),
+      plot.subtitle = element_text(size = 10, color = "gray25"),
+      legend.position = "none"
+    )
+  
+  fname <- file.path(
+    cmp4_plotdir,
+    sanitize_for_path(glue::glue("{ana}__Mothers__Entry__MaternalIGRA.png"))
+  )
+  ggsave(fname, p, width = w_in, height = h_in, dpi = 300, bg = "white")
+})
