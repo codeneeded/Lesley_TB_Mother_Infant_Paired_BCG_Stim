@@ -553,3 +553,17 @@ all_summaries <- purrr::map_dfr(
   ~ .x$summary
 )
 write_csv(all_summaries, file.path(out_root, "summary_all_layers.csv"))
+
+saveRDS(
+  master,
+  file = file.path(out_root, "master_analysis_ready.rds")
+)
+master_csv <- master %>%
+  dplyr::mutate(across(where(is.logical), as.integer)) %>%
+  dplyr::mutate(across(where(is.factor), as.character))
+
+write_csv(
+  master_csv,
+  file.path(out_root, "master_analysis_ready.csv")
+)
+
