@@ -1,0 +1,2 @@
+Layer,n_samples,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,AUC
+Plasma,32,34,0,0,34,0,0.16767870343362884,0.5

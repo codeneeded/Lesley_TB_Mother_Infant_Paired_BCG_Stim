@@ -1,0 +1,2 @@
+Layer,n_samples,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,AUC
+GAG,23,108,0,0,108,0,0.22602116155707083,0.5
