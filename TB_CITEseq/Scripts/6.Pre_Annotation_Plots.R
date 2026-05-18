@@ -42,7 +42,7 @@ TB_ALL <- qs_read(file.path(load.path, "TB_ALL_WNN.qs2"))
 
 # Set active cluster identity to res 0.6
 Idents(TB_ALL) <- "wsnn_res.0.6"
-
+table(TB_ALL$Sample_ID,TB_ALL$IGRA_mother)
 # Ensure numeric ordering of cluster levels
 lvls <- as.character(sort(as.numeric(levels(Idents(TB_ALL)))))
 Idents(TB_ALL) <- factor(Idents(TB_ALL), levels = lvls)
@@ -606,44 +606,223 @@ ggsave(
 
 message("\n=== All pre-annotation plots complete ===")
 message("Upload the CSVs from ", out_avgexpr, " for annotation help.")
+###############################################################################
+#  CLUSTER ANNOTATION (wsnn_res.0.6) — APPLIED
+#  ADT-first calls with RNA corroboration; see annotation block above for evidence
+###############################################################################
+
+message("\n=== Applying cluster annotations ===")
+
+# --- 1. Fix mislabeled IGRA status for sample 6061161 ---
+# Sample 6061161's mother is IGRA-negative, not positive
+message("Fixing IGRA_mother for sample 6061161 (IGRA+ -> IGRA-)...")
+
+cat("Before fix:\n")
+print(table(TB_ALL$Sample_ID, TB_ALL$IGRA_mother))
+
+TB_ALL$IGRA_mother[TB_ALL$Sample_ID == "6061161"] <- "IGRA-"
+
+# If IGRA_mother is a factor, drop unused levels and re-level
+if (is.factor(TB_ALL$IGRA_mother)) {
+  TB_ALL$IGRA_mother <- droplevels(TB_ALL$IGRA_mother)
+}
+
+cat("\nAfter fix:\n")
+print(table(TB_ALL$Sample_ID, TB_ALL$IGRA_mother))
+
+# --- 2. Backup original cluster identity ---
+TB_ALL$wsnn_res.0.6_orig <- Idents(TB_ALL)
+
+# --- 3. Fine-grained annotation (per cluster) ---
+cluster_annotations <- c(
+  "0"  = "Naive CD4 T",
+  "1"  = "Naive B (follicular)",
+  "2"  = "Naive CD8 T",
+  "3"  = "CD56dim NK",
+  "4"  = "Naive CD4 T",
+  "5"  = "Naive CD4 T (IL7R-hi)",
+  "6"  = "TEMRA CD8",
+  "7"  = "CM CD4 (Th2/CCR4+)",
+  "8"  = "Transitional B (T1/T2)",
+  "9"  = "Activated Naive CD4",
+  "10" = "Naive CD4 T (low-signal)",
+  "11" = "Memory B (CD27- / MZ-like)",
+  "12" = "Treg",
+  "13" = "Classical Monocyte",
+  "14" = "Platelet doublets",
+  "15" = "Vd1 gd T",
+  "16" = "Activated B / GC-pre",
+  "17" = "MAIT + Vg9Vd2 (mixed)",
+  "18" = "GZMK+ Tem CD8",
+  "19" = "CD56bright NK",
+  "20" = "Naive CD4 T (SOX4-hi)",
+  "21" = "DC mix (pDC+cDC2+prog)",
+  "22" = "ILC (ILC3-like)",
+  "23" = "Doublets (T+B+RBC)",
+  "24" = "Low-quality (ADT artifact)",
+  "25" = "Proliferating Plasmablast"
+)
+
+# Fine annotation — strip names so Seurat doesn't try to match them to barcodes
+TB_ALL$celltype_fine <- unname(cluster_annotations[as.character(Idents(TB_ALL))])
+TB_ALL$celltype_fine <- factor(TB_ALL$celltype_fine, levels = unique(cluster_annotations))
+
+
+# --- 4. Collapsed annotation (merging Naive CD4 family + cleaner top-level labels) ---
+collapsed_map <- c(
+  "Naive CD4 T"                 = "Naive CD4 T",
+  "Naive CD4 T (IL7R-hi)"       = "Naive CD4 T",
+  "Naive CD4 T (low-signal)"    = "Naive CD4 T",
+  "Naive CD4 T (SOX4-hi)"       = "Naive CD4 T",
+  "Activated Naive CD4"         = "Activated CD4 T",
+  "CM CD4 (Th2/CCR4+)"          = "CM CD4 T",
+  "Treg"                        = "Treg",
+  "Naive CD8 T"                 = "Naive CD8 T",
+  "TEMRA CD8"                   = "TEMRA CD8 T",
+  "GZMK+ Tem CD8"               = "Tem CD8 T",
+  "Vd1 gd T"                    = "gd T",
+  "MAIT + Vg9Vd2 (mixed)"       = "Innate-like T (MAIT/gd)",
+  "CD56dim NK"                  = "CD56dim NK",
+  "CD56bright NK"               = "CD56bright NK",
+  "ILC (ILC3-like)"             = "ILC",
+  "Naive B (follicular)"        = "Naive B",
+  "Transitional B (T1/T2)"      = "Transitional B",
+  "Memory B (CD27- / MZ-like)"  = "Memory B",
+  "Activated B / GC-pre"        = "Activated B",
+  "Proliferating Plasmablast"   = "Plasmablast",
+  "Classical Monocyte"          = "Classical Mono",
+  "DC mix (pDC+cDC2+prog)"      = "DC",
+  "Platelet doublets"           = "Platelet",
+  "Doublets (T+B+RBC)"          = "Doublets",
+  "Low-quality (ADT artifact)"  = "Low-quality"
+)
+# Collapsed annotation — same fix
+TB_ALL$celltype_main <- unname(collapsed_map[as.character(TB_ALL$celltype_fine)])
+TB_ALL$celltype_main <- factor(TB_ALL$celltype_main, levels = unique(collapsed_map))
+
+# --- 5. Mark cells to drop before downstream (doublets / QC failures) ---
+drop_clusters <- c("14", "23", "24")
+TB_ALL$keep <- !(as.character(Idents(TB_ALL)) %in% drop_clusters)
+
+cat("\n--- Cells flagged for removal ---\n")
+cat("Dropping clusters:", paste(drop_clusters, collapse = ", "), "\n")
+cat("Cells to drop:", sum(!TB_ALL$keep),
+    "(", round(100 * sum(!TB_ALL$keep) / ncol(TB_ALL), 2), "%)\n")
+cat("Cells to keep:", sum(TB_ALL$keep), "\n\n")
+
+# Summary tables
+cat("--- celltype_fine counts ---\n")
+print(table(TB_ALL$celltype_fine))
+cat("\n--- celltype_main counts ---\n")
+print(table(TB_ALL$celltype_main))
 
 ###############################################################################
-#  PREDICTED CLUSTER ANNOTATIONS (wsnn_res.0.6) — FOR REFERENCE
-#
-#  Cl  | Annotation                          | Key Evidence
-#  ----|--------------------------------------|-----------------------------------------------
-#   0  | Naive CD4 T cells                    | CD4+CD3+, SELL_hi, CCR7+, TCF7+, LEF1+, IL7R+, CD45RA+
-#   1  | Naive B cells (Follicular)           | CD19+, CXCR5+, CR2+, CD22+, IGHD+, IGHM+, CD79A/B+, HLA-DR+
-#   2  | Naive CD8 T cells                    | CD8A+, CD3+, CCR7+, TCF7+, LEF1+, CD45RA+, SELL+, NT5E+
-#   3  | CD56dim NK cells (cytotoxic)         | KIR+, CD16+, CD56+, GZMB+, GZMA+, SPON2+, CX3CR1+, CD160+
-#   4  | Naive CD4 T cells (quiescent)        | CD4+CD3+, SELL_hi, TCF7+, LEF1+, KLF2+, S1PR1+
-#   5  | Naive CD4 T cells (IL7R-hi)          | CD4+CD3+, SELL+, IL7R_hi, CCR7+, TCF7+, LEF1+, CD45RA+
-#   6  | TEMRA/Effector CD8 T cells           | CD8A+, B3GAT1+, FGFBP2+, GZMB+, ZNF683+, CX3CR1_ADT+
-#   7  | Central Memory CD4 T cells           | CD4+, CD45RO+, CCR4+, PDCD1+, CD28+, ICOS+, S1PR1+
-#   8  | Transitional/Immature B cells        | CD19+, MS4A1+, CD24+, BTLA+, CD79B+, PAX5+, TCL1A+
-#   9  | Recently Activated CD4 T cells       | CD4+CD3+, CD69_hi, CCR7+, BACH2+, BATF+, ICOS+
-#  10  | CD4 T cells (intermediate)           | CD4+CD3+, moderate naive markers, lower expression overall
-#  11  | Mature Naive B cells                 | CD19+, CD45RA+, MS4A1+, BANK1+, BLK+, CCR6+, CD1C_ADT+
-#  12  | Regulatory T cells (Tregs)           | CD4+, FOXP3+, IL2RA_hi, CTLA4+, TIGIT+, MCAM+, CD27+
-#  13  | Classical Monocytes (CD14+)          | CD14+, ITGAM+, S100A8/9+, LYZ+, MNDA+, FCN1+
-#  14  | Platelets / Megakaryocytes           | ITGA2B+, GP1BB+, SELP+, PPBP+, PF4+, GP9+ (+ doublet contamination)
-#  15  | TRDV1+ gd T cells                    | CD8+, TRDV1+, TRDC+, TOX+, PDCD1+, IKZF2+, CD27+
-#  16  | Activated/Memory B cells             | CD19+, CD40+, IGHD+, HLA-DR+, CD69_RNA+, BACH2+, CXCR5+
-#  17  | MAIT / Vd2 gd T cells               | TCR-vA7.2+, TCR-vD2+, SLC4A10+, TRGV9+, KLRG1+, CCR5+, IFNG+
-#  18  | Effector Memory CD8 T cells (Tem)    | CD8+, PDCD1+, EOMES+, GZMB+, GZMK+, CD45RO+, MKI67+
-#  19  | CD56bright NK cells                  | NCAM1_hi, NCR1+, KLRD1+, IL2RB+, XCL1/2+, GNLY+, ISG15+
-#  20  | Naive CD4 T cells (thymic recent)    | CD4+, SELL+, SOX4+, SATB1+, TOX2+, KLF2+, S1PR1+
-#  21  | pDC / DC progenitors                 | IL3RA+, CLEC4C+, THBD+, IRF7+, IRF8+, TCF4+, SPINK2+
-#  22  | ILC / MAIT-like (innate lymphoid)    | ITGAE+, KLRB1+, ZBTB16+, RORC+, GATA3+, IL2RA+, MAF+
-#  23  | Mixed / Low-quality (doublets?)      | IGKC+, IGLC1+, ALAS2+, mixed T/NK/B markers
-#  24  | Mixed / Low-quality (doublets?)      | High expression of many surface markers, mixed B/T signals
-#  25  | Plasmablasts / Plasma cells          | CD38_hi, JCHAIN+, MZB1+, XBP1+, PRDM1+, IRF4+, MKI67+, IGKC+
-#
-#  NOTES:
-#  - Clusters 0, 4, 5, 20 are all Naive CD4 — consider merging or sub-annotating
-#  - Clusters 23, 24 look like doublets/low-quality — consider removing
-#  - Cluster 14 (Platelets) likely contains cell-platelet doublets
-#  - Cluster 17 contains both MAIT (SLC4A10+, TCR-vA7.2+) and Vd2 gd (TRGV9+, TCR-vD2+)
-#  - Cluster 22 (ILC/MAIT-like) has ZBTB16+, RORC+, GATA3+ — may be ILC2/3 or NKT-like
-#  - Cluster 21 pDC also shows SPINK2+ (progenitor marker) — may include DC precursors
+#  ANNOTATED UMAPs
 ###############################################################################
+
+annot_umap_dir <- file.path(annot_dir, "Annotated_UMAPs")
+dir.create(annot_umap_dir, recursive = TRUE, showWarnings = FALSE)
+
+# Fine annotation
+p_fine <- DimPlot2(
+  TB_ALL,
+  reduction  = "wnn.umap",
+  group.by   = "celltype_fine",
+  cols       = "light",
+  label      = TRUE,
+  box        = TRUE,
+  repel      = TRUE,
+  label.size = 3.5,
+  pt.size    = 0.4,
+  raster     = FALSE,
+  theme      = list(NoLegend(), NoAxes(), theme_umap_arrows())
+) + ggtitle("TB WNN — Fine annotation (per cluster)")
+
+ggsave(
+  file.path(annot_umap_dir, "UMAP_celltype_fine.png"),
+  p_fine, dpi = 300, width = 12, height = 9, bg = "white"
+)
+
+# Main (collapsed) annotation
+p_main <- DimPlot2(
+  TB_ALL,
+  reduction  = "wnn.umap",
+  group.by   = "celltype_main",
+  cols       = "light",
+  label      = TRUE,
+  box        = TRUE,
+  repel      = TRUE,
+  label.size = 4.5,
+  pt.size    = 0.4,
+  raster     = FALSE,
+  theme      = list(NoAxes(), theme_umap_arrows())
+) + ggtitle("TB WNN — Main annotation (collapsed)")
+
+ggsave(
+  file.path(annot_umap_dir, "UMAP_celltype_main.png"),
+  p_main, dpi = 300, width = 13, height = 9, bg = "white"
+)
+
+# QC-pass cells highlighted
+p_keep <- DimPlot2(
+  TB_ALL,
+  reduction  = "wnn.umap",
+  group.by   = "keep",
+  cols       = c("TRUE" = "#2E86AB", "FALSE" = "#E63946"),
+  label      = FALSE,
+  pt.size    = 0.4,
+  raster     = FALSE,
+  theme      = list(NoAxes(), theme_umap_arrows())
+) + ggtitle("Cells flagged for removal (clusters 14, 23, 24)")
+
+ggsave(
+  file.path(annot_umap_dir, "UMAP_keep_flag.png"),
+  p_keep, dpi = 300, width = 11, height = 8, bg = "white"
+)
+
+###############################################################################
+#  EXPORT ANNOTATION TABLE
+###############################################################################
+
+annot_table <- data.frame(
+  cluster        = names(cluster_annotations),
+  celltype_fine  = unname(cluster_annotations),
+  celltype_main  = unname(collapsed_map[cluster_annotations]),
+  n_cells        = as.integer(table(TB_ALL$wsnn_res.0.6_orig)[names(cluster_annotations)]),
+  flagged_drop   = names(cluster_annotations) %in% drop_clusters
+)
+
+write.csv(annot_table,
+          file.path(annot_dir, "Cluster_annotation_table.csv"),
+          row.names = FALSE)
+
+cat("\nAnnotation table saved to: ",
+    file.path(annot_dir, "Cluster_annotation_table.csv"), "\n")
+
+###############################################################################
+#  SAVE ANNOTATED OBJECTS
+###############################################################################
+
+save.path <- file.path(base_dir, "saved_R_data")
+dir.create(save.path, recursive = TRUE, showWarnings = FALSE)
+
+# Full annotated object (all cells, including flagged ones)
+message("\nSaving full annotated object (TB_ALL_Annotated.qs2)...")
+qs_save(TB_ALL, file.path(save.path, "TB_ALL_Annotated.qs2"))
+
+# Clean object — flagged doublet/QC-fail clusters removed
+message("Subsetting to drop QC-fail clusters and saving TB_ALL_Annotated_Clean.qs2...")
+TB_clean <- subset(TB_ALL, subset = keep)
+
+# Drop unused factor levels in cleaned object
+TB_clean$celltype_fine <- droplevels(TB_clean$celltype_fine)
+TB_clean$celltype_main <- droplevels(TB_clean$celltype_main)
+TB_clean$wsnn_res.0.6_orig <- droplevels(TB_clean$wsnn_res.0.6_orig)
+
+qs_save(TB_clean, file.path(save.path, "TB_ALL_Annotated_Clean.qs2"))
+
+cat("\nSaved objects:\n")
+cat("  Full:  ", file.path(save.path, "TB_ALL_Annotated.qs2"), "  (", ncol(TB_ALL), " cells)\n", sep = "")
+cat("  Clean: ", file.path(save.path, "TB_ALL_Annotated_Clean.qs2"), " (", ncol(TB_clean), " cells)\n", sep = "")
+
+message("\n=== Annotation pipeline complete ===")

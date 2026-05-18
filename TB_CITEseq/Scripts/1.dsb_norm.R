@@ -528,6 +528,7 @@ sample_meta <- data.frame(
   IGRA_mother   = c("+", "-", "+", "-", "+", "+", "-", "+", "+", "+"),
   stringsAsFactors = FALSE
 )
+sample_meta
 
 # Map metadata onto Seurat object
 cell_orig <- merged_seurat$orig.ident
