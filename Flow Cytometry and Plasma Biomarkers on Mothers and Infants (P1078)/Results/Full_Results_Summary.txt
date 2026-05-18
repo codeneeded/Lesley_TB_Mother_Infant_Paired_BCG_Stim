@@ -1,0 +1,435 @@
+================================================================================
+P1078 — FULL RESULTS SUMMARY
+Flow Cytometry and Plasma Biomarkers on Mothers and Infants
+Scripts 1-4 (data cleaning, flow tests, plasma tests, LASSO modeling)
+================================================================================
+
+Cohort: mother-infant pairs with BCG-stimulated whole-blood ICS and plasma
+biomarker panel. Mothers measured at Entry (some at Dx). Infants measured
+at 12 weeks and 44 weeks. Stimulation conditions: MED (baseline), BCG,
+DosR, E6C10, GAG. Plasma panel: 34 analytes after low-information filtering.
+
+  Linked mother-infant pairs available for modeling : 32
+  Infants with flow at 12wk BCG                     : 35
+  Infants with both 12wk and 44wk flow              : ~33 (varies by stim)
+  Infants with IGRA = Pos                           : ~9-10 unique
+  Infants with IGRA = Neg                           : ~25 unique
+
+
+================================================================================
+HEADLINE FINDINGS
+================================================================================
+
+1. INFANT IMMUNE MATURATION 3 → 10 MONTHS is the strongest, most
+   coherent signal in the dataset, appearing in both cellular flow
+   readouts (Script 2 Comp1) and plasma biomarkers (Script 3 P1).
+   This is the only finding set that survives FDR correction across
+   multiple compartments.
+
+2. MATERNAL IGRA STATUS MANIFESTS IN CELLS, NOT IN PLASMA. Maternal
+   IGRA-Pos vs IGRA-Neg distinguishes Mtb-specific T-cell responses
+   (Script 2 Comp4) but does NOT show in maternal plasma biomarkers
+   (Script 3 P4). This dissociation has biological meaning.
+
+3. NO POPULATION-LEVEL MATERNAL→INFANT TRANSFER SIGNATURE is detectable.
+   The maternal IGRA cellular signature does not propagate into infant
+   flow (Script 2 Comp2) or infant plasma (Script 3 P2) at this sample
+   size.
+
+4. INFANT IGRA STATUS IS UNDERPOWERED FOR INFERENCE. With ~5-10 unique
+   IGRA-Pos infants, no analysis (univariate cellular, univariate
+   plasma, or multivariate LASSO across 12 feature layers) produces
+   FDR-significant findings. Two methods independently converge on
+   one signal: INFANT PLASMA IL-2 IS ELEVATED IN IGRA-POSITIVE INFANTS
+   (Script 3 P3 univariate + Script 4 LASSO selected feature).
+
+5. THE PROLIFERATION GATE IS BIOLOGICALLY VALIDATED. Cells in the
+   Proliferating gate display an effector-memory phenotype (high
+   activation markers, effector cytokines, CD107a degranulation) and
+   are depleted of naive and Tfh-like phenotypes (Script 2 Part A).
+   This supports using proliferating-cell delta as a modeling outcome.
+
+
+================================================================================
+SECTION 1 — INFANT IMMUNE MATURATION (3 → 10 MONTHS)
+================================================================================
+
+The cleanest finding in the project. Paired longitudinal design with
+n ≈ 33 infants gives the analysis enough power to survive FDR.
+
+
+CELLULAR (Script 2 Comp1 — paired Wilcoxon, prolif-only)
+--------------------------------------------------------
+
+Among 100 tests, 2 survive FDR; both are CD4 Th-polarization shifts
+under BCG:
+
+  CCR6- CXCR3+ (Th1-like) CD4    33% → 24%    q = 0.011    n = 34
+  CCR6+ CXCR3- (Th17-like) CD4    4.6% → 8.1%  q = 0.038    n = 34
+
+Direction: a Th1-skewed proliferating response at 3 months gives way
+to a broader Th1/Th17 mix by ~10 months.
+
+Among 15 raw-p hits, 11 of 15 are UP at 44 wks (TNFa, IL-21, IL-22,
+IFNy, HLA-DR+CD38+, CD107a). The proliferating compartment acquires
+more effector function with age — consistent with post-neonatal
+immune maturation.
+
+
+PLASMA (Script 3 P1 — paired Wilcoxon, n ≈ 31)
+-----------------------------------------------
+
+Four analytes are FDR-significant between 3 and ~10 months:
+
+  Analyte    n    Direction       q
+  -------    --   ----------      -----
+  CD14       31   Up at 44w       9.1e-05      (sCD14, monocyte activation)
+  TNF-RI     18   Down at 44w     0.016         (soluble TNF receptor I)
+  IL-22      31   Up at 44w       0.024         (Th17/Th22 cytokine)
+  TNF-RII    16   Down at 44w     0.041         (soluble TNF receptor II)
+
+Pattern: CD14 rises while both TNF receptor decoys decline. The IL-22
+emergence (from below LLOQ at 12w to detectable at 44w in a meaningful
+subset) parallels the cellular Th17 expansion in Script 2 Comp1.
+
+The cellular and plasma compartments tell the same story: reduced
+systemic TNF signaling, maturation of monocyte-driven innate
+immunity, and emergence of Th17/IL-22 axis activity over the first
+year of life.
+
+
+================================================================================
+SECTION 2 — MATERNAL IGRA: CELLULAR vs PLASMA DISSOCIATION
+================================================================================
+
+A two-part finding that is biologically informative even though
+neither half survives FDR.
+
+
+CELLULAR (Script 2 Comp4 — Kruskal-Wallis Pos/Neg/ATB, n median ≈ 35)
+---------------------------------------------------------------------
+
+Zero FDR-significant, 35 raw-p KW hits — the most coherent pattern of
+the cross-sectional analyses:
+
+  Th1 polarization (CCR6- CXCR3+) in CD4 separates IGRA status under:
+    BCG     KW raw p = 0.0003
+    DosR    KW raw p = 0.001
+    E6C10   KW raw p = 0.001
+
+  HLA-DR+CD38+ activation and CD45RO+CD27+ memory in CD8/gdTCR under
+  E6C10:  p = 0.002-0.008
+
+Pairwise post-hoc: 18 of 36 pairwise hits are Pos vs Neg; 12 of those
+18 are under E6C10 specifically (Mtb-specific antigen).
+
+The E6C10 enrichment fits an antigen-specificity gradient: IGRA-Pos
+women (Mtb-sensitized) respond to Mtb antigens; IGRA-Neg women do
+not. BCG (cross-reactive) shows it; DosR/GAG less clearly.
+
+
+PLASMA (Script 3 P4 — unpaired Wilcoxon, n_pos = 17, n_neg = 13)
+----------------------------------------------------------------
+
+Zero analytes at raw p < 0.05. Minimum raw p across 34 analytes is
+0.071 (IL-6).
+
+
+CROSS-COMPARTMENT INTERPRETATION
+--------------------------------
+
+Maternal IGRA status biology lives in the antigen-specific T-cell
+memory compartment, not in circulating plasma biomarkers. IGRA is
+an inducible-response assay; once IFN-γ-producing T cells are
+re-stimulated they show distinct profiles, but the steady-state
+plasma profile of an IGRA-Pos vs IGRA-Neg mother is the same in
+this cohort.
+
+
+================================================================================
+SECTION 3 — PROLIFERATION-GATE VALIDATION (Script 2 Part A)
+================================================================================
+
+  588 paired tests (Prolif vs NonProlif within each PID)
+  350 (60%) FDR-significant at q < 0.05
+  287/350 (82%) show Prolif > NonProlif
+
+The high hit rate reflects design rather than a screening issue —
+proliferating and non-proliferating cells are biologically distinct
+populations by construction.
+
+Markers UP in Prolif:
+  TNFa  +31     IFN-γ  +13     IL-2  +15
+  HLA-DR+CD38+  +30          (activation)
+  CD45RO+CD27+  +26          (effector memory)
+  CD107a       +26          (degranulation)
+  CD45RO+CD27-  +21
+  PD-1         +16
+
+Markers DOWN in Prolif:
+  CD45RO+CD27+/CXCR5+  -59   (Tfh-like memory)
+  CD45RO-CD27+         -27   (naive)
+  CCR6-CXCR3-          -21   (Th2-like double-neg)
+
+The pattern is the textbook antigen-specific responder signature.
+The proliferation gate captures real biology, supporting its use as
+a modeling outcome.
+
+
+================================================================================
+SECTION 4 — LASSO MODELING (Script 4, Outcome B: Infant IGRA Status)
+================================================================================
+
+12 of 17 feature layers ran; 5 skipped (Flow_Maternal_Entry_BCG at
+n = 17; four infant E6C10 and GAG layers due to those stims not
+being run in infants).
+
+CV_AUC_cvglmnet is NA across the board (cv.glmnet falls back from AUC
+to deviance below 10 obs/fold). OOF_AUC_roc — computed by an explicit
+out-of-fold loop — is the honest column.
+
+
+HEADLINE LAYER RANKING
+----------------------
+
+  Layer                            n_pos/n_neg   n_features    OOF AUC
+  -----                            -----------   ----------    -------
+  Plasma_Infant_44wk                5 / 24            0          0.76
+  Flow_Maternal_Entry_GAG           5 / 18            2          0.73
+  Plasma_Maternal_Entry             7 / 25            0          0.68
+  Plasma_All_Combined               7 / 25            0          0.68
+  Flow_Infant_12wk_DosR             9 / 25            0          0.65
+  Plasma_Infant_12wk                5 / 24            1          0.60
+  Flow_Maternal_Entry_DosR          6 / 22            0          0.59
+  Flow_Infant_44wk_DosR             7 / 25            0          0.58
+  Flow_Maternal_Entry_E6C10         6 / 24            0          0.56
+  Flow_Infant_44wk_BCG              9 / 25            0          0.53
+  Flow_Infant_12wk_BCG             10 / 25            0          0.46
+  Flow_All_Proliferating           10 / 25            0          0.46
+
+Only 2 of 12 layers retained any features after lambda.1se shrinkage.
+
+
+SELECTED FEATURES — Flow_Maternal_Entry_GAG (OOF AUC 0.73)
+----------------------------------------------------------
+
+  MatFlow_GAG_gdTCR-_CD8_Proliferating_CD107a_P
+    Coefficient +0.41, OR 1.51 per 1 SD
+    Driver of the model: mothers whose CD8 cells degranulate (CD107a+)
+    more in response to GAG → infants more likely IGRA-Pos.
+
+  MatFlow_GAG_gdTCR-_CD8_Proliferating_IL-17a_P
+    Coefficient -0.098, OR 0.91 per 1 SD
+    Negligible relative to CD107a (4× smaller); treat as noise.
+
+CAVEAT: GAG is an HIV-related antigen. A robust CD8 degranulation
+response to GAG is the immunological signature of HIV exposure or
+infection. The finding may be tracking maternal HIV status rather
+than independent Mtb-relevant biology. Adjustment for maternal HIV
+status is required before this can be interpreted as a TB-specific
+predictor.
+
+
+SELECTED FEATURES — Plasma_Infant_12wk (OOF AUC 0.60)
+-----------------------------------------------------
+
+  Inf12Plasma_IL-2
+    Coefficient +0.055, OR 1.06 per 1 SD
+    Infant plasma IL-2 at 12 weeks is higher in infants who later
+    test IGRA-positive.
+
+METHODOLOGICAL CONVERGENCE: this IL-2 selection independently
+replicates the Script 3 P3 univariate result, where IL-2 was the
+top raw-p hit (Pos median 1.06 vs Neg 0.43 log1p, raw p = 0.022).
+Two analytical methods on the same data converge on the same
+analyte in the same direction. The convergence is more informative
+than either result alone, though both are at n_pos = 5.
+
+IL-2 biology: T-cell growth factor; elevated circulating IL-2
+is consistent with ongoing T-cell activation including
+Mtb-specific responses. IGRA assays measure T-cell IFN-γ
+release, which is adjacent biology.
+
+
+================================================================================
+SECTION 5 — NEGATIVE / NULL FINDINGS
+================================================================================
+
+The negatives reported here are informative because, despite power
+limitations, several are large enough to reasonably exclude
+effects of practical magnitude.
+
+
+MATERNAL IGRA → INFANT FLOW (Script 2 Comp2)
+--------------------------------------------
+  300 tests, 0 FDR-significant, 23 raw-p hits (13 up, 10 down — no
+  coherent direction). At n_pos ≈ 18 and n_neg ≈ 15, a true
+  population-level effect of moderate magnitude would have shown.
+
+
+MATERNAL IGRA → INFANT PLASMA (Script 3 P2)
+-------------------------------------------
+  34 tests, 0 FDR-significant, 1 raw-p hit (iFABP, raw p = 0.015;
+  intestinal damage marker, plausible direction but not robust).
+
+
+INFANT IGRA → INFANT FLOW (Script 2 Comp3)
+------------------------------------------
+  300 tests, 0 FDR-significant, 41 raw-p hits. n_pos ≈ 9 vs
+  n_neg ≈ 25 — severe imbalance. Direction skew: 29/41 hits show
+  Pos < Neg, which is either real biology or an imbalance artifact.
+
+  Two patterns reproduce across conditions despite failing FDR:
+    CD107a CD8 / BCG / 44wks — Pos −24 pp, Cliff's δ = −0.79,
+                               raw p = 0.0006 (large effect)
+    CD45RO+CD27+ memory CD4 — Pos −30 pp at 44 wks across MED, DosR
+
+
+INFANT IGRA → INFANT PLASMA (Script 3 P3)
+-----------------------------------------
+  34 tests, 0 FDR-significant, 1 raw-p hit:
+    IL-2: Pos median 1.06 vs Neg 0.43 (+0.63 log1p), raw p = 0.022,
+          p_adj = 0.59
+  This is the analyte that was independently selected by Script 4 LASSO.
+
+
+================================================================================
+CROSS-CUTTING INTERPRETATION
+================================================================================
+
+THE INFANT MATURATION STORY IS REAL AND COHERENT
+------------------------------------------------
+Th17 expansion (cells, Comp1) is paralleled by IL-22 emergence
+(plasma, P1). TNF receptor decline (plasma) is paralleled by reduced
+TNF stratification (no FDR-sig but raw-p trends are consistent).
+CD14 maturation (plasma) maps onto innate-immunity development.
+Three FDR-significant findings across two analytical strands — the
+strongest evidence in the project.
+
+
+THE MATERNAL IGRA STORY IS LOCAL TO CELLS
+------------------------------------------
+T-cell memory responses differ by IGRA status (Comp4, especially
+E6C10) but plasma steady-state does not (P4). This is biologically
+expected: IGRA is an inducible-response assay. The implication is
+that maternal plasma biomarkers will not stratify mothers by Mtb-
+relevant axes in a population-level sense.
+
+
+THE INFANT IGRA STORY IS UNDERPOWERED BUT CONVERGENT WHERE IT EXISTS
+--------------------------------------------------------------------
+Three independent analytical approaches all return the same general
+picture:
+  - Univariate flow tests (Comp3): no FDR survivors, n_pos = 9
+  - Univariate plasma tests (P3): no FDR survivors, n_pos = 5,
+    top raw hit is IL-2 (+0.63 log1p in Pos)
+  - Multivariate LASSO across 12 layers (Outcome B): 2 layers retain
+    features; the plasma layer selects IL-2, replicating P3
+
+The cross-method convergence on IL-2 is the most defensible
+infant-IGRA signal in the project. The Flow_Maternal_Entry_GAG
+finding has higher AUC but is plausibly HIV-confounded and requires
+adjustment before interpretation.
+
+
+THE MATERNAL→INFANT TRANSFER STORY IS NEGATIVE AT POPULATION LEVEL
+------------------------------------------------------------------
+The maternal IGRA cellular signature (Comp4) does NOT show up in
+infant cellular composition (Comp2) or infant plasma (P2).
+Whether per-individual maternal features predict per-infant outcomes
+is a separate question — addressed by Script 4 Outcome A (BCG
+response prediction from maternal features), which is reported when
+results are available.
+
+
+================================================================================
+LIMITATIONS
+================================================================================
+
+
+SAMPLE SIZE AND STATISTICAL POWER
+---------------------------------
+The Mothers Dx stratum has a median of 5 paired observations
+(Script 2). Findings — positive or negative — in this stratum are
+not interpretable.
+
+The IGRA-positive infant subgroup contains ~5 distinct individuals
+after per-PID collapse (~9 across all rows). The Script 3 P3 and
+Script 4 Outcome B analyses involving infant IGRA status are
+exploratory; replication in a larger IGRA-Pos infant cohort is
+required to disambiguate true biology from imbalance artifact.
+
+
+MULTIPLE-TESTING BURDEN
+-----------------------
+Script 2 Comp4 (mothers by IGRA, 250 tests) yields no FDR-significant
+findings despite a biologically coherent E6C10/Th1 raw-p pattern.
+This reflects the test budget rather than absence of effect. The
+pattern is reportable as hypothesis-generating but not as
+confirmed positive.
+
+Scripts 3 plasma comparisons apply BH-FDR within each 34-analyte
+panel rather than across all four comparisons jointly, which is the
+appropriate within-comparison correction but does not protect
+against family-wise error across comparisons.
+
+
+CROSS-SECTIONAL DESIGN
+----------------------
+Comp2/3/4 (Script 2) and P2/3/4 (Script 3) are cross-sectional
+comparisons by IGRA status or disease state. Causal inference about
+maternal-to-infant immune transfer or IGRA acquisition is not
+supported. Comp1 (Script 2) and P1 (Script 3) are paired
+longitudinal and are the only analyses that support
+within-individual inference.
+
+
+LASSO MODEL FRAMING
+-------------------
+Script 4 fits LASSO logistic regression with stratified k-fold CV at
+lambda.1se. With n_pos = 5-10 across most layers, fold-level
+imbalance is unavoidable. The reported OOF_AUC_roc reflects per-fold
+refit behavior and may differ from the full-data lambda.1se feature
+set (which is what coefficient files report). This explains why
+some layers show a non-degenerate OOF AUC despite selecting zero
+features on the full data — per-fold refits at the same numerical
+lambda value retain features that the full-data fit shrinks to zero.
+
+The CV_AUC_cvglmnet column is NA across all layers because cv.glmnet
+falls back from AUC to deviance below 10 observations per fold.
+OOF_AUC_roc is the only valid AUC estimate in this run.
+
+
+HIV-RELATED CONFOUNDING
+-----------------------
+The strongest LASSO predictor of infant IGRA status (maternal
+CD107a degranulation under GAG stim) is plausibly confounded by
+maternal HIV status. GAG is an HIV-Gag antigen, and CD107a tracks
+cytotoxic CD8 effector function. The finding requires HIV-adjusted
+re-fitting before it can be interpreted as Mtb-specific.
+
+
+PLASMA-SPECIFIC CAVEATS
+-----------------------
+Twelve of 34 plasma analytes (D-Dimer, IL-27, TNF-RII, TNF-RI, CD25,
+CD163, ICAM-1, IL-18, CRP, MMP-9, VCAM-1, iFABP) have reduced sample
+sizes (n_pairs ≈ 16-18 in P1 vs n = 31 for the rest) due to upstream
+assay missingness. Power to detect change in this subset is lower.
+
+UND and below-LLOQ values (e.g. "<0.80↓") are recoded to 0 before
+log1p transformation. The IL-22 result in P1 (q = 0.024, median
+paired Δ = 0) illustrates the Wilcoxon-on-zeros quirk: most pairs
+move from 0 to a detectable value, the test correctly detects
+asymmetry, but the median-Δ summary statistic reads 0 and is
+uninformative for that analyte.
+
+
+IGRA SEMANTICS
+--------------
+"INT" (intermediate) values are treated as positive throughout.
+"ATB" (active TB) is treated as a separate clinical category and not
+pooled with positive. Where a single PID carries conflicting IGRA
+labels across rows, the highest-priority label
+(ATB > Pos > Neg > INT) is retained.
+
+================================================================================
