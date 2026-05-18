@@ -1,0 +1,2 @@
+Layer,n_samples,n_pos,n_neg,n_folds,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,CV_AUC_cvglmnet,OOF_AUC_roc
+Flow_All_Proliferating,35,10,25,10,424,53,0,371,0,0.24855800221215482,NA,0.456

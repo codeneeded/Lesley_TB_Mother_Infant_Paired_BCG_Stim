@@ -1,0 +1,2 @@
+Layer,n_samples,n_pos,n_neg,n_folds,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,CV_AUC_cvglmnet,OOF_AUC_roc
+Plasma_Maternal_Entry,32,19,13,10,34,0,0,34,0,0.16767870343362884,NA,0.7348178137651822

@@ -1,0 +1,2 @@
+Layer,n_samples,n_pos,n_neg,n_folds,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,CV_AUC_cvglmnet,OOF_AUC_roc
+Plasma_Infant_44wk,29,5,24,5,34,0,0,34,0,0.15117165504378396,NA,0.7625000000000001

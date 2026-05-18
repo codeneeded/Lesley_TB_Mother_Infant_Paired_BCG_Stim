@@ -1,0 +1,2 @@
+Layer,n_samples,n_pos,n_neg,n_folds,n_predictors_input,n_dropped_missing,n_dropped_nzv,n_predictors_final,n_selected_nonzero,lambda_use,CV_AUC_cvglmnet,OOF_AUC_roc
+Flow_Maternal_Entry_DosR,28,6,22,6,53,0,0,53,0,0.20456341212689436,NA,0.5871212121212122
