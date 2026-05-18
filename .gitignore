@@ -9,3 +9,6 @@ TB_CITEseq/saved_R_data/
 # saved R data folders
 saved_r_dat/
 **/saved_r_dat/
+# Large R data folders under 10x analysis directories
+10x*/saved_R_data/
+10x*/saved_R_dat/
