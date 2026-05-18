@@ -1,0 +1,251 @@
+================================================================================
+SCRIPT 2 — INTERPRETATION SUMMARY
+Flow Cytometry and Plasma Biomarkers on Mothers and Infants (P1078)
+================================================================================
+
+Two distinct analyses, two different questions.
+
+  PART A   _ALL_readouts_summary.csv
+           Within each PID, does the Proliferating fraction differ from the
+           Non-Proliferating fraction in the % of cells expressing each
+           readout? Stratified by Group x Condition x Compartment x Readout.
+
+  PART B   Comp1-Comp4 (Flow_ProlifOnly_GroupComparisons/StatTables_CSV/)
+           Among ONLY the proliferating cells, do response compositions
+           differ across time (Comp1), maternal IGRA (Comp2), infant IGRA
+           (Comp3), or maternal disease state (Comp4)?
+
+
+================================================================================
+PART A. PROLIFERATING vs NON-PROLIFERATING (PAIRED WILCOXON)
+File: Flow_Prolif_vs_NonProlif_PairedTests/_ALL_readouts_summary.csv
+================================================================================
+
+Scale
+-----
+  588 tests total
+  350 (60%) significant at FDR q < 0.05
+
+The high hit rate reflects the analytical design rather than a screening
+issue: proliferating and non-proliferating cells are biologically distinct
+populations by construction, so most readouts are expected to differ. The
+informative result is the direction and magnitude pattern.
+
+
+Headline pattern: Prolif cells display an activated effector phenotype
+----------------------------------------------------------------------
+Among 350 significant rows, 287 (82%) show Prolif > NonProlif. The markers
+sort along the effector-naive axis:
+
+  UP IN PROLIF (median delta pp, Prolif minus NonProlif)
+    TNFa                  +31
+    HLA-DR+ CD38+         +30
+    CD45RO+ CD27+         +26     (effector memory)
+    CD107a                +26     (degranulation)
+    CD45RO+ CD27-         +21
+    PD-1                  +16
+    IL-2                  +15
+    IFNy                  +13
+    IL-21, IL-22, IL-17a  +5 to +9
+    CCR6/CXCR3 subsets    +8 to +12
+
+  DOWN IN PROLIF
+    CD45RO+ CD27+ /CXCR5+ -59     (Tfh-like memory)
+    CD45RO- CD27+         -27     (naive)
+    CCR6- CXCR3-          -21     (Th2-like double-neg)
+    CD45RO- CD27-         -13     (terminal effector)
+
+Cells that proliferated after stimulation are enriched for effector
+cytokine production, activation markers, and effector-memory
+differentiation, while depleted of naive, terminal-effector, and Tfh-like
+phenotypes. This is the expected antigen-specific responder signature and
+supports the validity of the proliferation gate as a marker of antigen-
+specific response.
+
+The CXCR5+ memory subset shows a notably large depletion in Prolif
+(especially in mothers at Entry, -60 to -70 pp). Tfh-like cells provide
+B-cell help rather than expanding themselves on stimulation, so their
+relative absence from the proliferating fraction is biologically
+consistent.
+
+
+Sample sizes by group
+---------------------
+  Infants 12wks    median n = 34  (max 35)
+  Infants 44wks    median n = 32
+  Mothers Entry    median n = 24
+  Mothers Dx       median n =  5  (range 0-6)
+
+
+Tie-in to Script 4
+------------------
+In the Infant 12wk BCG block — the stratum used as the modeling outcome
+in Script 4 — 42 readouts are FDR-significant at n = 35, with effect
+sizes up to +/-58 pp. The proliferating CD8 compartment is a distinct
+cell population from the non-proliferating CD8 compartment, supporting
+the use of its delta as the modeling outcome.
+
+
+================================================================================
+PART B. PROLIFERATING-ONLY GROUP COMPARISONS (Comp1-Comp4)
+Files: Flow_ProlifOnly_GroupComparisons/StatTables_CSV/Comp{1..4}_*.csv
+================================================================================
+
+Summary across all four comparisons
+-----------------------------------
+
+  Test                                            n_tests  FDR-sig  Raw p<0.05
+  ----                                            -------  -------  ----------
+  Comp1  Infants 12wk -> 44wk, paired                100         2          15
+  Comp2  Infants, Maternal IGRA Pos vs Neg            300         0          23
+  Comp3  Infants, Infant IGRA Pos vs Neg              300         0          41
+  Comp4  Mothers KW across Pos/Neg/ATB                250         0          35
+
+Comp1 is the only comparison with FDR-significant findings.
+
+
+COMP1 — Infant maturation 12wk -> 44wk (paired, n ~ 33)
+-------------------------------------------------------
+
+Two FDR-significant findings, both CD4 Th-polarization shifts under BCG:
+
+  CCR6- CXCR3+ (Th1-like) CD4    33% -> 24%    q = 0.011    n = 34
+  CCR6+ CXCR3- (Th17-like) CD4    4.6% -> 8.1%  q = 0.038    n = 34
+
+A Th1-skewed proliferating response at 3 months gives way to a broader
+Th1/Th17 mix by ~10 months.
+
+Among the 15 raw-p hits, 11 of 15 are upregulated at 44 wks (TNFa, IL-21,
+IL-22, IFNy, HLA-DR+CD38+, CD107a). The proliferating compartment
+acquires more effector function with age, consistent with normal post-
+neonatal immune maturation.
+
+
+COMP2 — Maternal IGRA effect on infants (unpaired, n_pos ~ 18, n_neg ~ 15)
+--------------------------------------------------------------------------
+
+Zero FDR-significant, 23 raw-p hits with balanced direction (13 up in
+Pos, 10 down). The strongest raw signals do not form a coherent pattern
+across stimulations or timepoints.
+
+The data are consistent with no detectable population-level effect of
+in-utero maternal IGRA exposure on the composition of the infant
+proliferating-cell compartment at 12 or 44 weeks at this sample size.
+
+
+COMP3 — Infant's own IGRA status (unpaired, n_pos ~ 9, n_neg ~ 25)
+------------------------------------------------------------------
+
+Zero FDR-significant, 41 raw-p hits — the most of any comparison, but
+also the most underpowered. Direction is skewed: 29 of 41 raw hits show
+Pos < Neg.
+
+Two patterns reproduce across conditions:
+
+  CD107a (degranulation) CD8 / BCG / 44wks
+    Pos -24 pp vs Neg, Cliff's delta = -0.79, raw p = 0.0006
+
+  CD45RO+ CD27+ memory CD4
+    Approximately -30 pp in Pos at 44 wks across MED and DosR
+
+
+COMP4 — Maternal IGRA Pos/Neg/ATB (Kruskal-Wallis, n median ~ 35)
+-----------------------------------------------------------------
+
+Zero FDR-significant, 35 raw-p KW hits. The pattern is the most
+biologically coherent of the cross-sectional comparisons.
+
+  Th1 polarization (CCR6- CXCR3+) in CD4 separates IGRA status across
+  multiple stimulations:
+    BCG     KW raw p = 0.0003
+    DosR    KW raw p = 0.001
+    E6C10   KW raw p = 0.001
+
+  HLA-DR+CD38+ activation and CD45RO+CD27+ memory in CD8/gdTCR
+  under E6C10:  p = 0.002 - 0.008
+
+Pairwise post-hoc: 18 of 36 pairwise hits are Pos vs Neg, and 12 of those
+18 are under E6C10 specifically.
+
+E6C10 is the Mtb-specific antigen, so the Pos vs Neg difference under
+E6C10 is biologically expected: IGRA-positive women (Mtb-sensitized)
+respond to Mtb antigens; IGRA-negative women do not. The cross-reactive
+BCG signal is also present; DosR and GAG less clearly so. This fits an
+antigen-specificity gradient.
+
+
+================================================================================
+IMPLICATIONS FOR SCRIPT 4 (LASSO MODELING)
+================================================================================
+
+  Comp4 indicates that maternal IGRA-Pos and IGRA-Neg mothers have
+  detectably different proliferating-cell composition under stimulation,
+  particularly under the Mtb-specific antigen E6C10.
+
+  Comp2 indicates that this maternal difference is not visible at the
+  population level in infants. Maternal features may still predict
+  infant binary response in Script 4, but a large population-level
+  signal is not anticipated.
+
+  The IGRA-positive infant subgroup is too small (n = 9) to support
+  reliable inference involving infant IGRA status as a predictor or
+  stratification axis.
+
+
+================================================================================
+LIMITATIONS
+================================================================================
+
+Sample size and statistical power
+---------------------------------
+The Mothers Dx stratum has a median of 5 paired observations (range
+0-6). Only 3 of 196 tests in this group reach raw significance, and
+negative findings in this stratum cannot be interpreted as evidence of
+absence.
+
+The IGRA-positive infant subgroup contains 9 individuals against 25
+IGRA-negative infants (Comp3). Effect estimates in this comparison are
+unstable, and the direction skew (29 of 41 raw hits showing Pos < Neg)
+is consistent with both real biology and statistical artifact.
+Replication in a larger IGRA-positive infant cohort would be required
+to disambiguate.
+
+Multiple-testing burden
+-----------------------
+Comp2, Comp3, and Comp4 yield no FDR-significant findings despite
+biologically coherent raw-p patterns — most notably the E6C10/Th1
+Pos-vs-Neg axis in Comp4. This reflects the test budget (250-300 tests
+per comparison) rather than the absence of an effect. Raw-p signals
+appearing at consistent magnitudes across stimulations are
+hypothesis-generating but require independent validation.
+
+The Prolif-vs-NonProlif analysis (588 tests, 60% FDR-significant) is
+not a screen. The two cell fractions are biologically distinct by
+definition, so the relevant inferential output is the direction pattern
+across readouts, not per-readout significance.
+
+Cross-sectional design
+----------------------
+Comp2, Comp3, and Comp4 are cross-sectional comparisons across IGRA
+status or disease state. They do not support causal inference about
+maternal-to-infant immune transfer. Comp1 (paired longitudinal) is the
+only design in this script that supports inference about temporal
+change within individuals.
+
+Imbalance flagging
+------------------
+The implemented note_imbalance flag in Comp3 (triggering when n_pos < 5)
+did not fire for the 9 vs 25 imbalance present in this dataset. A
+softer threshold (e.g. min(n_pos, n_neg) < 10, or a ratio criterion
+exceeding 2:1) would have flagged it.
+
+IGRA semantics
+--------------
+Maternal IGRA "INT" (intermediate) values are treated as positive
+upstream of these analyses; "ATB" (active TB) is treated as a separate
+clinical category and not pooled with positive. Where a single PID
+carries inconsistent IGRA labels across rows, the highest-priority
+label (ATB > Pos > Neg > INT) is retained. Comparisons reported here
+reflect these definitions.
+
+================================================================================

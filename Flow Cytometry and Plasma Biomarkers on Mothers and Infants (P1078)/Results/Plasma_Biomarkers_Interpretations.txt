@@ -1,0 +1,257 @@
+================================================================================
+SCRIPT 3 — INTERPRETATION SUMMARY
+Flow Cytometry and Plasma Biomarkers on Mothers and Infants (P1078)
+Plasma biomarker analyses
+================================================================================
+
+Four comparisons, analogous in design to Script 2's Comp1-Comp4 but applied
+to 34 plasma analytes (after low-information filtering) instead of cellular
+flow readouts.
+
+  P1   Infants_12wk_vs_44wk_Paired
+       Paired Wilcoxon within each infant: does the analyte change from
+       3 months to ~10 months of age?
+
+  P2   Infants_byMaternalIGRA_PosVsNeg
+       Unpaired Wilcoxon: do infants of IGRA-Pos mothers have different
+       plasma levels than infants of IGRA-Neg mothers?
+
+  P3   Infants_byInfantIGRA_PosVsNeg
+       Unpaired Wilcoxon: do IGRA-Pos infants differ from IGRA-Neg infants?
+
+  P4   Mothers_Entry_byMaternalIGRA_PosVsNeg
+       Unpaired Wilcoxon at Entry: do IGRA-Pos mothers differ from
+       IGRA-Neg mothers in their systemic plasma profile?
+
+Statistical tests run on log1p-transformed values; identical p-values would
+result from running on z-scored values because the test is rank-based.
+P-values are BH-adjusted within each comparison.
+
+
+================================================================================
+SUMMARY ACROSS COMPARISONS
+================================================================================
+
+  Test                                            n_analytes  FDR-sig  Raw p<0.05
+  ----                                            ----------  -------  ----------
+  P1  Infants 12wk -> 44wk, paired                       34         4           9
+  P2  Infants, Maternal IGRA Pos vs Neg                  34         0           1
+  P3  Infants, Infant IGRA Pos vs Neg                    34         0           1
+  P4  Mothers Entry, Maternal IGRA Pos vs Neg            34         0           0
+
+P1 is the only comparison with FDR-significant findings. P4 returns no
+analyte at raw p < 0.05.
+
+
+================================================================================
+P1 — INFANT MATURATION 12wk -> 44wk (PAIRED)
+File: Plasma_StatTests/Infants_12wk_vs_44wk_Paired/stats_Infants_12vs44_paired.csv
+================================================================================
+
+Four analytes change significantly between 3 and ~10 months of age
+(FDR q < 0.05):
+
+  Analyte    n   Δ log1p   Direction   p_adj
+  -------    -   -------   ---------   -----
+  CD14      31    +0.28    Up at 44w   9.1e-05
+  TNF-RI    18    -0.28    Down        0.016
+  IL-22     31    +0.97*   Up at 44w   0.024
+  TNF-RII   16    -0.15    Down        0.041
+
+  * IL-22: median at 12w = 0 (below LLOQ in most infants), median at 44w
+    = 0.97. The Wilcoxon detects a directional shift even though the
+    median of paired differences is 0 (most pairs change from 0 to a
+    detectable value, with few going the other way).
+
+Biological reading
+------------------
+Soluble CD14 (sCD14, a monocyte-shed marker) rises across the first
+year. The TNF receptor decoys (TNF-RI, TNF-RII) both decline. IL-22
+moves from below detection to detectable in a meaningful subset of
+infants.
+
+The pattern is consistent with reduced systemic TNF signaling and
+maturation of monocyte-driven innate immunity. The IL-22 emergence
+parallels the cellular finding in Script 2 Comp1 (CCR6+ CXCR3- Th17-
+like CD4 cells expanding 12w -> 44w under BCG), supporting a coherent
+Th17/IL-22 axis maturing in this window.
+
+Direction overall
+-----------------
+Among the 9 raw p < 0.05 analytes, 6 decrease and 2 increase between 12
+and 44 weeks (1 IL-22 is direction-ambiguous due to the zero-floor).
+The dominant signal is a reduction in inflammatory plasma markers as
+infants mature.
+
+
+================================================================================
+P2 — INFANTS BY MATERNAL IGRA (POS vs NEG)
+File: Plasma_StatTests/Infants_byMaternalIGRA_PosVsNeg/
+================================================================================
+
+  n_pos median = 16   range [8, 16]   (one row per infant, pooled across
+  n_neg median = 13   range [7, 13]    12wk and 44wk where both exist)
+
+Zero FDR-significant analytes; one raw p < 0.05 hit:
+
+  iFABP   Pos median 10.07, Neg 9.70   (+0.37 log1p)   raw p = 0.015,
+                                                       p_adj = 0.51
+
+iFABP is a marker of intestinal epithelial damage / gut permeability;
+the direction (higher in infants of IGRA-Pos mothers) is biologically
+plausible but does not survive FDR with this sample size.
+
+The data are consistent with no detectable systemic plasma signature
+of in-utero maternal IGRA exposure in the infant at the available
+sample size.
+
+
+================================================================================
+P3 — INFANTS BY INFANT IGRA (POS vs NEG)
+File: Plasma_StatTests/Infants_byInfantIGRA_PosVsNeg/
+================================================================================
+
+  n_pos median =  5   range [3, 5]
+  n_neg median = 24   range [12, 24]
+
+The IGRA-positive infant subgroup contains 5 distinct individuals after
+per-PID collapse across timepoints. This is the most underpowered
+comparison in Script 3.
+
+Zero FDR-significant analytes; one raw p < 0.05:
+
+  IL-2   Pos median 1.06, Neg 0.43   (+0.63 log1p)   raw p = 0.022,
+                                                     p_adj = 0.59
+
+Findings in P3 cannot be reliably interpreted at this sample size.
+
+
+================================================================================
+P4 — MOTHERS AT ENTRY BY MATERNAL IGRA (POS vs NEG)
+File: Plasma_StatTests/Mothers_Entry_byMaternalIGRA_PosVsNeg/
+================================================================================
+
+  n_pos median = 17   range [10, 17]
+  n_neg median = 13   range [ 7, 13]
+
+Zero analytes at raw p < 0.05. The minimum raw p across all 34
+analytes is 0.071 (IL-6). No FDR-significant findings.
+
+This is a clean negative result and contrasts informatively with
+Script 2 Comp4, which found Mtb-specific cellular response differences
+between IGRA-Pos and IGRA-Neg mothers under E6C10 (KW raw p < 0.005
+for multiple Th1 readouts). Maternal IGRA status manifests in the
+T-cell memory compartment (inducible, antigen-specific) but not in
+the circulating plasma cytokine/biomarker profile at Entry.
+
+
+================================================================================
+CROSS-CUTTING OBSERVATIONS
+================================================================================
+
+Infant plasma matures markedly between 3 and ~10 months
+-------------------------------------------------------
+Four FDR-significant changes in P1 (CD14 up; TNF-RI, TNF-RII down;
+IL-22 emerging) describe coordinated maturation of innate-inflammatory
+signaling and Th17-axis emergence. The IL-22 result aligns with the
+cellular Th17 expansion seen in Script 2 Comp1.
+
+Maternal IGRA status does not appear in plasma
+----------------------------------------------
+P4 shows no plasma differences between IGRA-Pos and IGRA-Neg mothers
+at Entry, despite Script 2 Comp4 showing clear differences in their
+cellular Mtb-specific responses. This dissociation indicates that
+the IGRA-status biology is captured by antigen-specific memory T cells
+rather than by systemic circulating biomarkers in this cohort.
+
+The maternal IGRA effect does not propagate to infant plasma either
+-------------------------------------------------------------------
+P2 shows no FDR-significant plasma signature in infants of IGRA-Pos
+versus IGRA-Neg mothers, consistent with the negative cross-sectional
+result in Script 2 Comp2 for cellular readouts. Together, P2 and the
+flow Comp2 support a "no detectable population-level transfer" reading
+at this sample size.
+
+
+================================================================================
+IMPLICATIONS FOR SCRIPT 4 (LASSO MODELING)
+================================================================================
+
+  The maternal plasma layer in Script 4 uses Entry-timepoint maternal
+  plasma to predict infant 12wk BCG response. P4 establishes that
+  maternal plasma does not separate IGRA-Pos from IGRA-Neg mothers at
+  the population level. Maternal plasma may still predict individual
+  infant response — the LASSO may identify combinations of analytes
+  carrying signal that no single analyte test detects — but a strong
+  univariate predictor was not anticipated and is not present.
+
+  Infant IGRA status as a stratification or prediction axis is not
+  supported by this script (n_pos = 5 after per-PID collapse).
+
+  The four analytes with maturation signals (CD14, TNF-RI, TNF-RII,
+  IL-22) are infant-timepoint changes and are not part of the maternal-
+  feature predictor set in Script 4. They are flagged here for
+  potential follow-up as developmental references rather than as
+  modeling inputs.
+
+
+================================================================================
+LIMITATIONS
+================================================================================
+
+Sample size and missingness
+---------------------------
+Roughly one-third of analytes (12 of 34) have substantially reduced
+paired counts in P1 (n_pairs = 16-18) compared to the rest (n = 31).
+This reflects high upstream missingness in those specific assays
+(D-Dimer, IL-27, TNF-RII, TNF-RI, CD25, CD163, ICAM-1, IL-18, CRP,
+MMP-9, VCAM-1, iFABP — most have ~43 NA cells in the source data).
+Power to detect change is correspondingly lower in this subset.
+
+In P3, the IGRA-positive infant subgroup contains only ~5 distinct
+individuals after per-PID collapse across timepoints. Negative
+findings in P3 are not interpretable as evidence of absence; positive
+findings should be treated as hypothesis-generating only.
+
+Pooling across timepoints in P2/P3
+----------------------------------
+P2 and P3 pool 12wk and 44wk observations for each infant (collapsed
+per PID with the median across timepoints). This averages out
+timepoint-specific effects and assumes the maternal-IGRA or infant-
+IGRA effect is stable across the two timepoints. A timepoint-stratified
+analysis would have lower power per stratum but could reveal effects
+specific to one developmental window.
+
+UND/below-LLOQ handling and the IL-22 quirk
+-------------------------------------------
+UND and below-LLOQ values (e.g. "<0.80↓") are recoded to 0 before log1p
+transformation. This is appropriate for rank-based testing but produces
+visualization artifacts when the median of paired differences is 0 for
+an analyte whose Wilcoxon p-value is nonetheless small. IL-22 in P1 is
+the clearest example: most infants are at 0 at 12 weeks, a subset are
+detectable at 44 weeks, the Wilcoxon detects the asymmetry, but the
+median Δ summary statistic reads 0. The p-value is correct; the median
+Δ effect size is uninformative for this analyte.
+
+Multiple-testing burden
+-----------------------
+Each comparison applies BH-FDR within its own analyte panel (34 tests).
+This is less aggressive than the 250-300 tests per comparison in
+Script 2 but still removes single-analyte raw signals from P2 and P3
+that might warrant follow-up in a larger cohort.
+
+Cross-sectional design (P2, P3, P4)
+-----------------------------------
+P2, P3, and P4 are cross-sectional comparisons. They do not support
+causal inference about maternal-to-infant transfer or about progression
+from IGRA-Neg to IGRA-Pos status. P1 (paired longitudinal) is the only
+design in Script 3 that supports within-individual inference.
+
+IGRA semantics
+--------------
+Maternal IGRA "INT" values are treated as positive in the IGRA lookup
+used by Script 3; "ATB" is treated as a separate clinical category and
+is not included in the Pos vs Neg contrast in P4. The ATB stratum is
+not analyzed separately in plasma at this stage.
+
+================================================================================

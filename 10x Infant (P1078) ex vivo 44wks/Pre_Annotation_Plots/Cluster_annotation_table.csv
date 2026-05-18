@@ -1,0 +1,27 @@
+"cluster","celltype_fine","celltype_main","n_cells","flagged_drop"
+"0","Naive CD4 T","Naive CD4 T",9437,FALSE
+"1","Naive B (follicular)","Naive B",7899,FALSE
+"2","Naive CD8 T","Naive CD8 T",6510,FALSE
+"3","CD56dim NK","CD56dim NK",4887,FALSE
+"4","Naive CD4 T","Naive CD4 T",4496,FALSE
+"5","Naive CD4 T (IL7R-hi)","Naive CD4 T",3819,FALSE
+"6","TEMRA CD8","TEMRA CD8 T",3128,FALSE
+"7","CM CD4 (Th2/CCR4+)","CM CD4 T",2928,FALSE
+"8","Transitional B (T1/T2)","Transitional B",2716,FALSE
+"9","Activated Naive CD4","Activated CD4 T",2069,FALSE
+"10","Naive CD4 T (low-signal)","Naive CD4 T",1868,FALSE
+"11","Memory B (CD27- / MZ-like)","Memory B",1479,FALSE
+"12","Treg","Treg",1321,FALSE
+"13","Classical Monocyte","Classical Mono",1267,FALSE
+"14","Platelet doublets","Platelet",1238,TRUE
+"15","Vd1 gd T","gd T",1209,FALSE
+"16","Activated B / GC-pre","Activated B",1058,FALSE
+"17","MAIT + Vg9Vd2 (mixed)","Innate-like T (MAIT/gd)",904,FALSE
+"18","GZMK+ Tem CD8","Tem CD8 T",704,FALSE
+"19","CD56bright NK","CD56bright NK",590,FALSE
+"20","Naive CD4 T (SOX4-hi)","Naive CD4 T",401,FALSE
+"21","DC mix (pDC+cDC2+prog)","DC",320,FALSE
+"22","ILC (ILC3-like)","ILC",263,FALSE
+"23","Doublets (T+B+RBC)","Doublets",100,TRUE
+"24","Low-quality (ADT artifact)","Low-quality",61,TRUE
+"25","Proliferating Plasmablast","Plasmablast",46,FALSE
