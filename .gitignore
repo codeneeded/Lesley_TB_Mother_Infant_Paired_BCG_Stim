@@ -3,3 +3,9 @@
 .RData
 .Ruserdata
 TB_CITEseq/saved_R_data/
+# qs2 serialized R objects
+*.qs2
+*.qs
+# saved R data folders
+saved_r_dat/
+**/saved_r_dat/
