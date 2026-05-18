@@ -1,0 +1,23 @@
+"Cluster","DE_Genes"
+"Naive CD4 T",989
+"Naive B (follicular)",410
+"Naive CD8 T",672
+"CD56dim NK",602
+"Naive CD4 T (IL7R-hi)",287
+"TEMRA CD8",311
+"CM CD4 (Th2/CCR4+)",204
+"Transitional B (T1/T2)",165
+"Activated Naive CD4",178
+"Naive CD4 T (low-signal)",208
+"Memory B (CD27- / MZ-like)",85
+"Treg",84
+"Classical Monocyte",520
+"Vd1 gd T",54
+"Activated B / GC-pre",27
+"MAIT + Vg9Vd2 (mixed)",94
+"GZMK+ Tem CD8",53
+"CD56bright NK",52
+"Naive CD4 T (SOX4-hi)",17
+"DC mix (pDC+cDC2+prog)",29
+"ILC (ILC3-like)",15
+"Proliferating Plasmablast",0
