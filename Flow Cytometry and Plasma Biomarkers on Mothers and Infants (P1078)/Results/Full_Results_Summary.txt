@@ -17,6 +17,87 @@ DosR, E6C10, GAG. Plasma panel: 34 analytes after low-information filtering.
 
 
 ================================================================================
+DATA COLUMNS AND TRANSFORMATIONS
+================================================================================
+
+This reference section documents which column from which file feeds each
+downstream analysis, and how the column was created. Every subsequent
+section names the column it used and points back here.
+
+
+FLOW CYTOMETRY (output of Script 1)
+-----------------------------------
+
+  Source file       : Raw_Data/TB_Flow_Cytokine_DATA_102725.xlsx
+  Cleaned file      : saved_R_dat/TB_Flow_Cytokine_DATA_102725_preprocessed_MEDnorm.qs2
+                     (and .csv mirror)
+
+  Pipeline:
+    Value
+      = raw % of cells in gate, scale [0, 100], from the xlsx.
+    Value_clipped
+      = pmin(pmax(Value, ctrl_min_pct), 100 - ctrl_min_pct).
+        Clips to a safe interior so logit is finite. ctrl_min_pct ≈ 0.05.
+    Value_logit
+      = logit(Value_clipped / 100).
+    Batch_effect
+      = per-batch median of Value_logit on the HC-SP batch control
+        (one MED sample per batch). Captures batch shift on the logit scale.
+    Value_logit_norm
+      = Value_logit - Batch_effect.   Batch-corrected.
+    Value_RawNormalized
+      = 100 * inv.logit(Value_logit_norm).   Back to [0, 100] %.
+    MED_value
+      = per-(PID, gate) Value_RawNormalized when Condition == "MED".
+    Delta_unscaled
+      = Value_RawNormalized - MED_value.   Stim minus baseline per cell, in pp.
+    Delta_for_model
+      = Delta_unscaled, but only defined for non-MED conditions
+        (NA when MED is missing — no silent fallback).
+
+  Key columns used downstream:
+    Value_RawNormalized   - Script 2 (both Part A and Part B Comp1-4).
+    Delta_for_model       - Script 4 LASSO (all flow features).
+
+
+PLASMA BIOMARKERS (output of Script 3)
+--------------------------------------
+
+  Source file        : Raw_Data/TB_Flow_and_Plasma_Biomarker_data.xlsx, sheet
+                       "Plasma Biomarker"
+  Long-form output   : saved_R_dat/Plasma_Biomarker_long_scaled.qs2 (.csv mirror)
+  Wide output        : saved_R_dat/Plasma_Biomarker_wide_scaled.qs2 (.csv mirror)
+
+  Pipeline:
+    Value (raw text)
+      = original cell value from xlsx. May be numeric, "UND", "NA-run", or
+        a below/above-LLOQ marker like "<0.80↓" or ">5000↑".
+    Flag
+      = parsed status: "OK" (numeric), "UND" (below detection), "BLLOQ"
+        (numeric tagged with ↓), "OVER" (above range), "NA_run" (failed run).
+    Value_clean
+      = numeric value with UND → 0, BLLOQ → numeric (text marker stripped),
+        OVER and NA_run → NA. The recoding UND → 0 is preserved through
+        all downstream statistics.
+    Value_log1p
+      = log1p(Value_clean).
+    Value_z
+      = z-score of Value_log1p computed WITHIN each (Group × TP) stratum
+        (Mother-Entry, Mother-Dx, Infant-12wks, Infant-44wks). The wide
+        table at Plasma_Biomarker_wide_scaled.* uses Value_z so that
+        analyte units are comparable across strata.
+
+  Key columns used downstream:
+    Value_log1p   - Script 3 statistical tests (P1-P4).
+    Value_z       - Script 4 LASSO (all plasma features). Already scaled,
+                    so no additional standardisation needed before glmnet.
+
+  Note: log1p vs z-score does not change Wilcoxon p-values (rank-based)
+  but does change effect-size summaries. Script 3 reports medians on
+  the log1p scale.
+
+
+================================================================================
 HEADLINE FINDINGS
 ================================================================================
 
@@ -31,35 +112,48 @@ HEADLINE FINDINGS
    (Script 2 Comp4) but does NOT show in maternal plasma biomarkers
    (Script 3 P4). This dissociation has biological meaning.
 
-3. NO POPULATION-LEVEL MATERNAL→INFANT TRANSFER SIGNATURE is detectable.
-   The maternal IGRA cellular signature does not propagate into infant
-   flow (Script 2 Comp2) or infant plasma (Script 3 P2) at this sample
-   size.
+3. MATERNAL FACTORS CAN PREDICT INFANT IGRA STATUS — WEAKLY.
+   In Script 4, four of the twelve LASSO model layers use maternal-only
+   features as predictors of infant IGRA. The best of these
+   (Flow_Maternal_Entry_GAG) reaches OOF AUC 0.73 with two selected
+   features. The driving feature is plausibly HIV-confounded (see
+   Section 4); the result is exploratory and requires HIV-adjusted
+   re-analysis.
 
-4. INFANT IGRA STATUS IS UNDERPOWERED FOR INFERENCE. With ~5-10 unique
-   IGRA-Pos infants, no analysis (univariate cellular, univariate
-   plasma, or multivariate LASSO across 12 feature layers) produces
-   FDR-significant findings. Two methods independently converge on
-   one signal: INFANT PLASMA IL-2 IS ELEVATED IN IGRA-POSITIVE INFANTS
-   (Script 3 P3 univariate + Script 4 LASSO selected feature).
+4. NO POPULATION-LEVEL MATERNAL→INFANT TRANSFER SIGNATURE is detectable
+   in unadjusted univariate tests (Script 2 Comp2, Script 3 P2). The
+   LASSO maternal-only signal in finding #3 is a per-individual model
+   prediction, not a population-level mean shift.
 
-5. THE PROLIFERATION GATE IS BIOLOGICALLY VALIDATED. Cells in the
-   Proliferating gate display an effector-memory phenotype (high
-   activation markers, effector cytokines, CD107a degranulation) and
-   are depleted of naive and Tfh-like phenotypes (Script 2 Part A).
-   This supports using proliferating-cell delta as a modeling outcome.
+5. INFANT IGRA STATUS IS UNDERPOWERED FOR INFERENCE. With ~5-10 unique
+   IGRA-Pos infants, no univariate analysis produces FDR-significant
+   findings. Two independent methods (univariate Wilcoxon and LASSO)
+   converge on INFANT PLASMA IL-2 ELEVATED IN IGRA-POSITIVE INFANTS.
+
+6. THE PROLIFERATION GATE IS BIOLOGICALLY VALIDATED. Cells in the
+   Proliferating gate display an effector-memory phenotype and are
+   depleted of naive and Tfh-like phenotypes (Script 2 Part A,
+   60% of 588 tests FDR-significant). Supports using proliferating-
+   cell delta as a modeling outcome.
 
 
 ================================================================================
 SECTION 1 — INFANT IMMUNE MATURATION (3 → 10 MONTHS)
 ================================================================================
 
-The cleanest finding in the project. Paired longitudinal design with
-n ≈ 33 infants gives the analysis enough power to survive FDR.
+Data columns used
+-----------------
+  Cellular (Script 2 Comp1): Value_RawNormalized
+    Paired Wilcoxon on per-infant 44wks vs 12wks differences. Reads
+    the cleaned, batch-normalised % of cells in each gate.
+
+  Plasma (Script 3 P1): Value_log1p
+    Paired Wilcoxon on per-infant 44wks vs 12wks differences in
+    log1p-transformed analyte concentrations.
 
 
-CELLULAR (Script 2 Comp1 — paired Wilcoxon, prolif-only)
---------------------------------------------------------
+CELLULAR (Script 2 Comp1 — paired Wilcoxon, prolif-only, n ≈ 33)
+----------------------------------------------------------------
 
 Among 100 tests, 2 survive FDR; both are CD4 Th-polarization shifts
 under BCG:
@@ -90,20 +184,25 @@ Four analytes are FDR-significant between 3 and ~10 months:
 
 Pattern: CD14 rises while both TNF receptor decoys decline. The IL-22
 emergence (from below LLOQ at 12w to detectable at 44w in a meaningful
-subset) parallels the cellular Th17 expansion in Script 2 Comp1.
+subset) parallels the cellular Th17 expansion above.
 
 The cellular and plasma compartments tell the same story: reduced
-systemic TNF signaling, maturation of monocyte-driven innate
-immunity, and emergence of Th17/IL-22 axis activity over the first
-year of life.
+systemic TNF signaling, maturation of monocyte-driven innate immunity,
+and emergence of Th17/IL-22 axis activity over the first year of life.
 
 
 ================================================================================
 SECTION 2 — MATERNAL IGRA: CELLULAR vs PLASMA DISSOCIATION
 ================================================================================
 
-A two-part finding that is biologically informative even though
-neither half survives FDR.
+Data columns used
+-----------------
+  Cellular (Script 2 Comp4): Value_RawNormalized
+    Restricted to Proliferating gates only. Kruskal-Wallis across
+    Pos/Neg/ATB with pairwise post-hoc Wilcoxons.
+
+  Plasma (Script 3 P4): Value_log1p
+    Pos vs Neg unpaired Wilcoxon on maternal Entry samples.
 
 
 CELLULAR (Script 2 Comp4 — Kruskal-Wallis Pos/Neg/ATB, n median ≈ 35)
@@ -121,7 +220,7 @@ the cross-sectional analyses:
   E6C10:  p = 0.002-0.008
 
 Pairwise post-hoc: 18 of 36 pairwise hits are Pos vs Neg; 12 of those
-18 are under E6C10 specifically (Mtb-specific antigen).
+18 are under E6C10 specifically (the Mtb-specific antigen).
 
 The E6C10 enrichment fits an antigen-specificity gradient: IGRA-Pos
 women (Mtb-sensitized) respond to Mtb antigens; IGRA-Neg women do
@@ -149,6 +248,16 @@ this cohort.
 ================================================================================
 SECTION 3 — PROLIFERATION-GATE VALIDATION (Script 2 Part A)
 ================================================================================
+
+Data column used
+----------------
+  Value_RawNormalized. Paired Wilcoxon WITHIN each PID, comparing
+  Proliferating vs Non-Proliferating sibling gates at every
+  Group × Condition × Compartment × Readout combination.
+
+
+Results
+-------
 
   588 paired tests (Prolif vs NonProlif within each PID)
   350 (60%) FDR-significant at q < 0.05
@@ -180,84 +289,156 @@ a modeling outcome.
 SECTION 4 — LASSO MODELING (Script 4, Outcome B: Infant IGRA Status)
 ================================================================================
 
-12 of 17 feature layers ran; 5 skipped (Flow_Maternal_Entry_BCG at
-n = 17; four infant E6C10 and GAG layers due to those stims not
-being run in infants).
+Data columns used
+-----------------
+  Flow features    : Delta_for_model (Stim − MED, pp scale)
+                     Restricted to Proliferating gates only.
+                     Prefixed by sample-source in the master table:
+                       MatFlow_<stim>_<gate>_<freqcode>      (Mother Entry)
+                       Inf12Flow_<stim>_<gate>_<freqcode>   (Infant 12wk)
+                       Inf44Flow_<stim>_<gate>_<freqcode>   (Infant 44wk)
+  Plasma features  : Value_z (z-score of log1p within Group × TP)
+                     Prefixed similarly:
+                       MatPlasma_<analyte>     (Mother Entry)
+                       Inf12Plasma_<analyte>   (Infant 12wk)
+                       Inf44Plasma_<analyte>   (Infant 44wk)
+  Outcome          : Infant_IGRA mapped Pos → 1, Neg → 0, other excluded.
+                     One row per infant.
 
-CV_AUC_cvglmnet is NA across the board (cv.glmnet falls back from AUC
-to deviance below 10 obs/fold). OOF_AUC_roc — computed by an explicit
-out-of-fold loop — is the honest column.
+Framework
+---------
+  LASSO logistic regression (glmnet, alpha = 1).
+  Stratified k-fold CV with k = min(10, n_pos, n_neg).
+  cv.glmnet with type.measure = "auc" (deviance fallback below 10
+  obs/fold — fires for all layers in this run).
+  Out-of-fold predictions concatenated for an explicit honest OOF ROC.
 
-
-HEADLINE LAYER RANKING
-----------------------
-
-  Layer                            n_pos/n_neg   n_features    OOF AUC
-  -----                            -----------   ----------    -------
-  Plasma_Infant_44wk                5 / 24            0          0.76
-  Flow_Maternal_Entry_GAG           5 / 18            2          0.73
-  Plasma_Maternal_Entry             7 / 25            0          0.68
-  Plasma_All_Combined               7 / 25            0          0.68
-  Flow_Infant_12wk_DosR             9 / 25            0          0.65
-  Plasma_Infant_12wk                5 / 24            1          0.60
-  Flow_Maternal_Entry_DosR          6 / 22            0          0.59
-  Flow_Infant_44wk_DosR             7 / 25            0          0.58
-  Flow_Maternal_Entry_E6C10         6 / 24            0          0.56
-  Flow_Infant_44wk_BCG              9 / 25            0          0.53
-  Flow_Infant_12wk_BCG             10 / 25            0          0.46
-  Flow_All_Proliferating           10 / 25            0          0.46
-
-Only 2 of 12 layers retained any features after lambda.1se shrinkage.
+  CV_AUC_cvglmnet is NA across the board (AUC fallback). OOF_AUC_roc
+  is the column to read.
 
 
-SELECTED FEATURES — Flow_Maternal_Entry_GAG (OOF AUC 0.73)
-----------------------------------------------------------
+LAYER SCOPE: WHICH DATA PREDICTS WHICH OUTCOME
+-----------------------------------------------
+
+The 17 layers attempted (12 ran, 5 skipped) split by predictor scope:
+
+  Scope                            Layers ran    Best OOF AUC    Best layer
+  -----                            ----------    ------------    ----------
+  Maternal-only → Infant IGRA          3 of 4         0.73       Flow_Maternal_Entry_GAG
+  Infant-only → Infant IGRA            6 of 9         0.76       Plasma_Infant_44wk
+  Combined (mat + inf) → Infant IGRA   2 of 2         0.68       Plasma_All_Combined
+
+  Skipped: Flow_Maternal_Entry_BCG (n=17, below stratified-CV minimum);
+           Flow_Infant_{12wk,44wk}_{E6C10,GAG} (zero predictor columns —
+           E6C10 and GAG were not stimulated in infants).
+
+
+MATERNAL-ONLY → INFANT IGRA (predict infant outcome from mother's data)
+-----------------------------------------------------------------------
+
+This is the direct test of whether maternal immune features identify
+infants who will be IGRA-positive.
+
+  Layer                          n_pos / n_neg   features kept   OOF AUC
+  -----                          -------------   -------------   -------
+  Flow_Maternal_Entry_GAG          5 / 18              2          0.73
+  Plasma_Maternal_Entry            7 / 25              0          0.68
+  Flow_Maternal_Entry_DosR         6 / 22              0          0.59
+  Flow_Maternal_Entry_E6C10        6 / 24              0          0.56
+
+Of the maternal layers, only Flow_Maternal_Entry_GAG retained features
+after lambda.1se shrinkage.
+
+Selected features in Flow_Maternal_Entry_GAG:
 
   MatFlow_GAG_gdTCR-_CD8_Proliferating_CD107a_P
-    Coefficient +0.41, OR 1.51 per 1 SD
-    Driver of the model: mothers whose CD8 cells degranulate (CD107a+)
-    more in response to GAG → infants more likely IGRA-Pos.
+    Coefficient +0.41, OR 1.51 per 1 SD.
+    DRIVER OF THE MODEL. Mothers whose CD8 cells degranulate (CD107a+)
+    more in response to GAG stim → infants more likely IGRA-Pos.
 
   MatFlow_GAG_gdTCR-_CD8_Proliferating_IL-17a_P
-    Coefficient -0.098, OR 0.91 per 1 SD
+    Coefficient -0.098, OR 0.91 per 1 SD.
     Negligible relative to CD107a (4× smaller); treat as noise.
 
-CAVEAT: GAG is an HIV-related antigen. A robust CD8 degranulation
+CAVEAT: GAG is the HIV-Gag antigen. A robust CD8 degranulation
 response to GAG is the immunological signature of HIV exposure or
 infection. The finding may be tracking maternal HIV status rather
 than independent Mtb-relevant biology. Adjustment for maternal HIV
-status is required before this can be interpreted as a TB-specific
-predictor.
+status is required before this can be interpreted as a
+TB-specific predictor.
 
 
-SELECTED FEATURES — Plasma_Infant_12wk (OOF AUC 0.60)
------------------------------------------------------
+INFANT-ONLY → INFANT IGRA (contemporaneous biomarker signature)
+----------------------------------------------------------------
+
+This is NOT prediction in any meaningful temporal sense (predictor
+and outcome are measured around the same time). It tests whether
+contemporaneous infant immune state correlates with IGRA classification.
+
+  Layer                          n_pos / n_neg   features kept   OOF AUC
+  -----                          -------------   -------------   -------
+  Plasma_Infant_44wk               5 / 24              0          0.76
+  Flow_Infant_12wk_DosR            9 / 25              0          0.65
+  Plasma_Infant_12wk               5 / 24              1          0.60
+  Flow_Infant_44wk_DosR            7 / 25              0          0.58
+  Flow_Infant_44wk_BCG             9 / 25              0          0.53
+  Flow_Infant_12wk_BCG            10 / 25              0          0.46
+
+The only infant-only layer that retained any feature is
+Plasma_Infant_12wk:
 
   Inf12Plasma_IL-2
-    Coefficient +0.055, OR 1.06 per 1 SD
+    Coefficient +0.055, OR 1.06 per 1 SD.
     Infant plasma IL-2 at 12 weeks is higher in infants who later
     test IGRA-positive.
 
 METHODOLOGICAL CONVERGENCE: this IL-2 selection independently
-replicates the Script 3 P3 univariate result, where IL-2 was the
-top raw-p hit (Pos median 1.06 vs Neg 0.43 log1p, raw p = 0.022).
-Two analytical methods on the same data converge on the same
-analyte in the same direction. The convergence is more informative
-than either result alone, though both are at n_pos = 5.
+replicates the Script 3 P3 univariate result (IL-2: Pos median 1.06
+vs Neg 0.43 log1p, raw p = 0.022). Two methods on the same data
+converge on the same analyte in the same direction.
 
-IL-2 biology: T-cell growth factor; elevated circulating IL-2
-is consistent with ongoing T-cell activation including
-Mtb-specific responses. IGRA assays measure T-cell IFN-γ
-release, which is adjacent biology.
+IL-2 biology: T-cell growth factor; elevated circulating IL-2 is
+consistent with ongoing T-cell activation including Mtb-specific
+responses. IGRA measures T-cell IFN-γ release — adjacent biology.
+
+
+COMBINED (MAT + INF) → INFANT IGRA
+----------------------------------
+
+  Plasma_All_Combined: n_pos=7, n_neg=25, 0 features kept, OOF AUC 0.68.
+  Flow_All_Proliferating: n_pos=10, n_neg=25, 0 features kept, OOF AUC 0.46.
+
+The combined plasma model performs identically to maternal-only
+plasma (OOF AUC 0.68). Combining sources does not improve performance
+here, suggesting maternal plasma carries whatever weak signal exists,
+and adding infant plasma features dilutes it under LASSO penalisation.
+
+
+WHY OOF AUC > 0.5 IS POSSIBLE EVEN WITH 0 FEATURES KEPT
+-------------------------------------------------------
+
+Some layers report OOF AUC ≠ 0.5 despite reporting zero features
+selected at lambda.1se on the full data. This is a framework
+artifact, not a bug. The coefficient files report the full-data
+fit at lambda.1se. The OOF AUC is computed by refitting glmnet at
+the SAME numerical lambda value on each training fold separately.
+Because lambda.1se is one SE more conservative than full-data
+lambda.min, applying that same numerical value to a smaller
+training fold may not be conservative relative to that fold's
+optimal lambda, and per-fold fits can retain features that the
+full-data fit shrinks to zero. The OOF AUC reflects per-fold
+predictive behavior; the coefficient files reflect what survives
+the most conservative single fit.
 
 
 ================================================================================
 SECTION 5 — NEGATIVE / NULL FINDINGS
 ================================================================================
 
-The negatives reported here are informative because, despite power
-limitations, several are large enough to reasonably exclude
-effects of practical magnitude.
+Data columns used
+-----------------
+  All cellular comparisons: Value_RawNormalized.
+  All plasma comparisons: Value_log1p.
 
 
 MATERNAL IGRA → INFANT FLOW (Script 2 Comp2)
@@ -297,49 +478,50 @@ INFANT IGRA → INFANT PLASMA (Script 3 P3)
 CROSS-CUTTING INTERPRETATION
 ================================================================================
 
-THE INFANT MATURATION STORY IS REAL AND COHERENT
-------------------------------------------------
+INFANT MATURATION IS REAL AND COHERENT
+--------------------------------------
 Th17 expansion (cells, Comp1) is paralleled by IL-22 emergence
-(plasma, P1). TNF receptor decline (plasma) is paralleled by reduced
-TNF stratification (no FDR-sig but raw-p trends are consistent).
-CD14 maturation (plasma) maps onto innate-immunity development.
-Three FDR-significant findings across two analytical strands — the
-strongest evidence in the project.
+(plasma, P1). TNF receptor decline (plasma, P1) is paralleled by
+reduced TNFa stratification (no FDR-sig but raw-p trends are
+consistent). CD14 maturation (plasma) maps onto innate-immunity
+development. Three FDR-significant findings across two analytical
+strands — the strongest evidence in the project.
 
 
-THE MATERNAL IGRA STORY IS LOCAL TO CELLS
-------------------------------------------
+MATERNAL IGRA IS LOCAL TO CELLS
+-------------------------------
 T-cell memory responses differ by IGRA status (Comp4, especially
-E6C10) but plasma steady-state does not (P4). This is biologically
-expected: IGRA is an inducible-response assay. The implication is
-that maternal plasma biomarkers will not stratify mothers by Mtb-
+E6C10) but plasma steady-state does not (P4). Biologically expected:
+IGRA is an inducible-response assay. The implication is that
+maternal plasma biomarkers will not stratify mothers by Mtb-
 relevant axes in a population-level sense.
 
 
-THE INFANT IGRA STORY IS UNDERPOWERED BUT CONVERGENT WHERE IT EXISTS
---------------------------------------------------------------------
-Three independent analytical approaches all return the same general
-picture:
-  - Univariate flow tests (Comp3): no FDR survivors, n_pos = 9
-  - Univariate plasma tests (P3): no FDR survivors, n_pos = 5,
-    top raw hit is IL-2 (+0.63 log1p in Pos)
-  - Multivariate LASSO across 12 layers (Outcome B): 2 layers retain
-    features; the plasma layer selects IL-2, replicating P3
+MATERNAL FACTORS CAN PREDICT INFANT IGRA — WEAKLY
+-------------------------------------------------
+Univariate testing (Comp2 + P2) finds no population-level
+maternal → infant signature, but multivariate LASSO with maternal-
+only predictors does find one (OOF AUC 0.73 for GAG-stim maternal
+flow). The two results are not in contradiction. Univariate tests
+ask whether means differ across groups; LASSO asks whether some
+combination of features predicts the binary outcome per infant.
+A multivariate signal can exist without a univariate one.
 
-The cross-method convergence on IL-2 is the most defensible
-infant-IGRA signal in the project. The Flow_Maternal_Entry_GAG
-finding has higher AUC but is plausibly HIV-confounded and requires
-adjustment before interpretation.
+The maternal GAG-CD107a finding is plausibly HIV-confounded. If
+maternal HIV status is available, the model should be re-fit with
+HIV as an adjustment covariate or with the dataset stratified by
+HIV status. If HIV is unavailable, the finding should be reported
+with explicit acknowledgement that maternal HIV exposure cannot
+be excluded as the underlying driver.
 
 
-THE MATERNAL→INFANT TRANSFER STORY IS NEGATIVE AT POPULATION LEVEL
-------------------------------------------------------------------
-The maternal IGRA cellular signature (Comp4) does NOT show up in
-infant cellular composition (Comp2) or infant plasma (P2).
-Whether per-individual maternal features predict per-infant outcomes
-is a separate question — addressed by Script 4 Outcome A (BCG
-response prediction from maternal features), which is reported when
-results are available.
+INFANT IGRA IS UNDERPOWERED BUT CONVERGENT WHERE IT EXISTS
+----------------------------------------------------------
+Univariate plasma (P3) and multivariate LASSO (Outcome B,
+Plasma_Infant_12wk layer) independently identify IL-2 as elevated
+in IGRA-Pos infants. The cross-method convergence is the most
+defensible infant-IGRA signal in the project, though both
+analyses are at n_pos = 5.
 
 
 ================================================================================
@@ -350,11 +532,11 @@ LIMITATIONS
 SAMPLE SIZE AND STATISTICAL POWER
 ---------------------------------
 The Mothers Dx stratum has a median of 5 paired observations
-(Script 2). Findings — positive or negative — in this stratum are
-not interpretable.
+(Script 2). Findings — positive or negative — in this stratum
+are not interpretable.
 
 The IGRA-positive infant subgroup contains ~5 distinct individuals
-after per-PID collapse (~9 across all rows). The Script 3 P3 and
+after per-PID collapse (~9 across all rows). Script 3 P3 and
 Script 4 Outcome B analyses involving infant IGRA status are
 exploratory; replication in a larger IGRA-Pos infant cohort is
 required to disambiguate true biology from imbalance artifact.
@@ -365,29 +547,35 @@ MULTIPLE-TESTING BURDEN
 Script 2 Comp4 (mothers by IGRA, 250 tests) yields no FDR-significant
 findings despite a biologically coherent E6C10/Th1 raw-p pattern.
 This reflects the test budget rather than absence of effect. The
-pattern is reportable as hypothesis-generating but not as
-confirmed positive.
+pattern is reportable as hypothesis-generating but not as confirmed
+positive.
 
-Scripts 3 plasma comparisons apply BH-FDR within each 34-analyte
-panel rather than across all four comparisons jointly, which is the
-appropriate within-comparison correction but does not protect
+Script 3 plasma comparisons apply BH-FDR within each 34-analyte
+panel rather than across all four comparisons jointly, which is
+the appropriate within-comparison correction but does not protect
 against family-wise error across comparisons.
 
 
 CROSS-SECTIONAL DESIGN
 ----------------------
 Comp2/3/4 (Script 2) and P2/3/4 (Script 3) are cross-sectional
-comparisons by IGRA status or disease state. Causal inference about
-maternal-to-infant immune transfer or IGRA acquisition is not
-supported. Comp1 (Script 2) and P1 (Script 3) are paired
+comparisons by IGRA status or disease state. Causal inference
+about maternal-to-infant immune transfer or IGRA acquisition is
+not supported. Comp1 (Script 2) and P1 (Script 3) are paired
 longitudinal and are the only analyses that support
 within-individual inference.
+
+The Script 4 LASSO maternal-only → infant-IGRA models are
+temporally appropriate (maternal samples at Entry precede the
+infant IGRA measurement), so the prediction direction is causally
+plausible, but the cross-sectional comparison framing of
+univariate tests still applies to interpretation.
 
 
 LASSO MODEL FRAMING
 -------------------
-Script 4 fits LASSO logistic regression with stratified k-fold CV at
-lambda.1se. With n_pos = 5-10 across most layers, fold-level
+Script 4 fits LASSO logistic regression with stratified k-fold CV
+at lambda.1se. With n_pos = 5-10 across most layers, fold-level
 imbalance is unavoidable. The reported OOF_AUC_roc reflects per-fold
 refit behavior and may differ from the full-data lambda.1se feature
 set (which is what coefficient files report). This explains why
@@ -395,41 +583,43 @@ some layers show a non-degenerate OOF AUC despite selecting zero
 features on the full data — per-fold refits at the same numerical
 lambda value retain features that the full-data fit shrinks to zero.
 
-The CV_AUC_cvglmnet column is NA across all layers because cv.glmnet
-falls back from AUC to deviance below 10 observations per fold.
-OOF_AUC_roc is the only valid AUC estimate in this run.
+The CV_AUC_cvglmnet column is NA across all layers because
+cv.glmnet falls back from AUC to deviance below 10 observations
+per fold. OOF_AUC_roc is the only valid AUC estimate in this run.
 
 
 HIV-RELATED CONFOUNDING
 -----------------------
-The strongest LASSO predictor of infant IGRA status (maternal
-CD107a degranulation under GAG stim) is plausibly confounded by
-maternal HIV status. GAG is an HIV-Gag antigen, and CD107a tracks
-cytotoxic CD8 effector function. The finding requires HIV-adjusted
-re-fitting before it can be interpreted as Mtb-specific.
+The strongest maternal-only LASSO predictor of infant IGRA status
+(maternal CD107a degranulation under GAG stim) is plausibly
+confounded by maternal HIV status. GAG is the HIV-Gag antigen,
+and CD107a tracks cytotoxic CD8 effector function. The finding
+requires HIV-adjusted re-fitting before it can be interpreted as
+Mtb-specific.
 
 
 PLASMA-SPECIFIC CAVEATS
 -----------------------
-Twelve of 34 plasma analytes (D-Dimer, IL-27, TNF-RII, TNF-RI, CD25,
-CD163, ICAM-1, IL-18, CRP, MMP-9, VCAM-1, iFABP) have reduced sample
-sizes (n_pairs ≈ 16-18 in P1 vs n = 31 for the rest) due to upstream
-assay missingness. Power to detect change in this subset is lower.
+Twelve of 34 plasma analytes (D-Dimer, IL-27, TNF-RII, TNF-RI,
+CD25, CD163, ICAM-1, IL-18, CRP, MMP-9, VCAM-1, iFABP) have
+reduced sample sizes (n_pairs ≈ 16-18 in P1 vs n = 31 for the
+rest) due to upstream assay missingness. Power to detect change
+in this subset is lower.
 
-UND and below-LLOQ values (e.g. "<0.80↓") are recoded to 0 before
-log1p transformation. The IL-22 result in P1 (q = 0.024, median
-paired Δ = 0) illustrates the Wilcoxon-on-zeros quirk: most pairs
-move from 0 to a detectable value, the test correctly detects
-asymmetry, but the median-Δ summary statistic reads 0 and is
-uninformative for that analyte.
+UND and below-LLOQ values (e.g. "<0.80↓") are recoded to 0
+before log1p transformation. The IL-22 result in P1 (q = 0.024,
+median paired Δ = 0) illustrates the Wilcoxon-on-zeros quirk:
+most pairs move from 0 to a detectable value, the test correctly
+detects asymmetry, but the median-Δ summary statistic reads 0
+and is uninformative for that analyte.
 
 
 IGRA SEMANTICS
 --------------
 "INT" (intermediate) values are treated as positive throughout.
-"ATB" (active TB) is treated as a separate clinical category and not
-pooled with positive. Where a single PID carries conflicting IGRA
-labels across rows, the highest-priority label
+"ATB" (active TB) is treated as a separate clinical category and
+not pooled with positive. Where a single PID carries conflicting
+IGRA labels across rows, the highest-priority label
 (ATB > Pos > Neg > INT) is retained.
 
 ================================================================================
