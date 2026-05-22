@@ -17,7 +17,7 @@ library(SeuratExtend)
 #    (clusters 14, 23, 24 already removed)
 # -------------------------------------------------
 
-base_dir   <- "/home/akshay-iyer/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim/TB_CITEseq"
+base_dir   <- "/home/akshay-iyer/Documents/Lesley_TB_Mother_Infant_Paired_BCG_Stim/10x Infant (P1078) ex vivo 44wks"
 load.path  <- file.path(base_dir, "saved_R_data")
 
 TB_ALL <- qs_read(file.path(load.path, "TB_ALL_Annotated_Clean.qs2"))
@@ -44,6 +44,7 @@ cat("\n--- IGRA_mother ---\n")
 print(table(TB_ALL$IGRA_mother, useNA = "ifany"))
 cat("\n--- IGRA_infant x IGRA_mother (cell-level) ---\n")
 print(table(TB_ALL$IGRA_infant, TB_ALL$IGRA_mother, useNA = "ifany"))
+TB_ALL$
 
 # ======================================
 # 1) Optional: cluster distribution plots
