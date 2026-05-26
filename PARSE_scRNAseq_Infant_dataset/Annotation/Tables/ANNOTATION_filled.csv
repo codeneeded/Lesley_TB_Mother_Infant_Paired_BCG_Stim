@@ -1,0 +1,30 @@
+cluster,n_cells,pct_of_total,dominant_lineage,dominant_frac,top_markers,cell_type,lineage,state,confidence,flag,notes
+0,41890,17.16,T,0.573,"MAL, ICOS, SELL, NELL2, CD4, TCF7, C1QBP, CD27, CCND3, TRAC, CD40LG, CD3E",CD4 Naive T,T,naive,high,,
+1,39200,16.06,T,0.678,"CD40LG, MAL, CD4, SELL, CD27, TCF7, CCND3, ICOS, TRAC, CD3E, SH2D1A, TRBC1",CD4 TCM,T,central memory,high,,"CD40LG+, lower NELL2 than cl0"
+2,23417,9.59,B,0.796,"CD19, CD200, CD79A, IGFBP4, CXCR5, MS4A1, CD40, IGHM, TCF4, IRF8, BCL6, HLA-DRB1",B naive,B,naive,high,,IGHM-hi; likely light-chain split with cl6
+3,19622,8.04,T,0.71,"CD8B, NELL2, CD27, CD8A, CR2, TRAC, TCF7, CD3D, TRBC1, CD3E, SELL, CCND3",CD8 Naive T,T,naive,high,,"NELL2-hi, TCF7-hi"
+4,13522,5.54,NK,0.941,"FASLG, KLRB1, KLRC1, TIGIT, KLRD1, NKG7, HAVCR2, PRF1, GNLY, CCL5, IL2RB, FCGR3A",NK,NK,cytotoxic (CD56dim),high,,
+5,13269,5.44,T,0.552,"MAF, ICOS, CD4, CD40LG, SELL, CTLA4, TRAC, TCF7, CCND3, CD27, CD3E, MAL",CD4 TCM,T,central memory / Th (MAF+),medium,,
+6,12794,5.24,B,0.798,"FCGR2B, CD19, CD79A, MS4A1, CR2, CXCR5, IGHM, CD40, TCF4, IRF8, HLA-DPA1, ENTPD1",B naive,B,naive,medium,,IGHM-hi; FCGR2B+; pairs with cl2
+7,10211,4.18,B,0.759,"IGFBP4, CD79A, MS4A1, CD200, IGHM, CD19, TCF4, IKZF2, CD40, FCRL5, CXCR5, IRF8",B intermediate,B,intermediate,medium,,"IGFBP4+, low FCRL5"
+8,9447,3.87,B,0.527,"C1QBP, CD200, NR4A1, IRF4, FCRL5, FABP5, CXCR5, IGFBP4, TNFRSF18, CD40, MIR155HG, MS4A1",B memory,B,activated/memory,medium,,"FCRL5-hi, IRF4-hi, MIR155HG"
+9,7446,3.05,NK,0.474,"CD8A, CD8B, CCL5, CD3D, TBX21, TRGC2, PRF1, NKG7, FASLG, KLRD1, TRAC, LDHA",CD8 TEM,T,effector memory / cytotoxic,medium,,"CD8A/B+, CCL5/KLRD1/TBX21"
+10,6103,2.5,B,0.479,"CD19, MS4A1, IGHM, NELL2, CD79A, CCND3, CXCR5, IGFBP4, TCF7, TCF4, SELL, CD40",Doublet (B + naive T),Unresolved,mixed,low,remove,QC: nCount ~2x baseline (11753) + B&T co-expression -> doublet
+11,5577,2.28,T,0.537,"BATF, FOXP3, IL2RA, CTLA4, TIGIT, TOX, SELL, ICOS, CD4, TRAC, MAL, IKZF2",Treg,T,regulatory,high,,FOXP3/IL2RA/CTLA4
+12,5469,2.24,Monocyte,0.917,"CCL2, CD14, CD36, IFI30, ITGAX, FCGR3A, IL18BP, LGALS1, SERPINA1, MT-ND1, HAVCR2, CXCL8",CD14 Monocyte,Myeloid,classical / resting,high,,~99% media — baseline monocyte (BCG-responsive pair = cl16)
+13,5422,2.22,gdT,0.555,"TRDV1, TRDC, CXCR3, IKZF2, SH2D1A, TRGC2, CD27, TOX, TCF7, MAL, CD3D, NELL2",gdT (Vd1),gdT,TRDV1+ / naive-like,medium,,
+14,5055,2.07,NK,0.676,"TIGIT, TRGC2, LAG3, CCL5, TRGC1, TBX21, TRDC, PRF1, IKZF2, CD8A, NKG7, GNLY",gdT (cytotoxic),gdT,effector / cytotoxic,low,,TRGC2-hi + GNLY/KLRD1; may include CD8 NKT-like
+15,3801,1.56,Platelet,0.364,"NR4A1, MALAT1, ICOS, BATF, HIF1A, MT-ND1, NELL2, LTB, TCF7, BCL6, TRBC1, TRAC",CD4 T (activated/stress),T,IEG/MALAT1-hi,low,remove,QC: low complexity (1253 genes) + IEG/MALAT1 dissociation signature -> low quality (soft call; set flag blank to keep)
+16,3408,1.4,Monocyte,0.497,"BCL6, CCL4L2, CCL3, IL10, IL1B, EBI3, CXCL8, SERPINA1, TNF, TNFAIP2, MIR155HG, ITGAX",CD14 Monocyte (inflammatory),Myeloid,inflammatory / cytokine,high,,IL1B/CXCL8/CCL3/TNF-hi; 85% BCG — trained-immunity response
+17,3330,1.36,T,0.691,"NELL2, CD27, CD8B, MAL, SELL, TCF7, CD3E, CCND3, ICOS, TRAC, CD3D, TRBC1",CD8 Naive T,T,naive,low,,very naive (NELL2-hi); low CD8/CD4 — could be mixed naive
+18,3364,1.38,NK,0.556,"CD8A, NELL2, CCL5, KLRD1, CD8B, TCF7, CD3D, TOX, MAL, ICOS, GNLY, TRAC",CD8 TCM,T,central / transitional memory,medium,,CD8+ with retained TCF7/NELL2 + some cytotox
+19,2265,0.93,T,0.367,"RORC, MAF, GATA3, ZBTB16, CD40LG, KLRB1, CD7, BATF, ICOS, TRAC, IL2RA, NELL2",MAIT,T,innate-like,high,,ZBTB16/KLRB1/RORC
+20,2214,0.91,NK,0.945,"CTSW, ENTPD1, CXCR3, HIF1A, GNLY, KLRC1, XCL1, TNFRSF18, NCAM1, IL2RB, IL18RAP, GZMK",NK CD56bright,NK,CD56bright,high,,"NCAM1-hi, FCGR3A-lo, XCL1+"
+21,1634,0.67,gdT,0.366,"GZMK, ZBTB16, TRGV9, TRGC1, RORC, IL18RAP, KLRB1, MAF, FASLG, LDHA, TRGC2, TRDC",gdT (Vg9Vd2),gdT,innate / effector,medium,,TRGV9/TRGC1 + ZBTB16/KLRB1
+22,1499,0.61,Monocyte,0.556,"CCL2, ITGAX, IFI30, IL1B, CXCL8, CCL3, CD14, TNFAIP2, TNF, SERPINA1, CD36, MT-ND1",CD14 Monocyte (inflammatory),Myeloid,inflammatory (milder),medium,,"IL1B/CXCL8+; milder than cl16 | kept: highest depth (14842) but cleanly myeloid - activated mono, OK"
+23,1173,0.48,Plasma,0.429,"CD36, HLA-DRA, HLA-DRB1, HLA-DPA1, LTB, LTA, IRF8, TCF4, CD4, TNFRSF4, LGALS1, IL18BP",pDC,DC,plasmacytoid,high,,TCF4-hi(48) + IRF8
+24,865,0.35,NK,0.501,"CD19, CCL5, IGFBP4, KLRD1, IGHM, MS4A1, CD79A, CD40, TCF4, GNLY, FASLG, CD8A",Doublet (B + NK),Unresolved,mixed,low,remove,QC: nCount ~2x baseline (11079) + B&NK co-expression -> doublet
+25,733,0.3,Monocyte,0.379,"FABP5, EBI3, TNFRSF4, TNFRSF9, TNFAIP2, IL2RA, HLA-DPA1, HLA-DRA, MIR155HG, HLA-DRB1, CXCL8, TNFRSF18",Activated DC,DC,mature / mregDC-like,low,,HLA-DR-hi + EBI3/IL2RA/TNFRSF9; CD1C/CLEC9A not resolved
+26,589,0.24,NK,0.71,"FCGR3A, IFNG, NKG7, TBX21, CTSW, PRF1, NR4A1, MALAT1, NCAM1, GNLY, CD7, ZBTB16",NK (activated),NK,activated / IFNG+,medium,,"IFNG-hi, cytotoxic | kept: low depth (1375 genes) but clean NK markers - real low-RNA NK"
+27,429,0.18,B,0.599,"MT-ND5, FCRL5, MS4A1, CD40, CXCR5, HLA-DRB1, NR4A1, MT-ND1, IRF8, CD19, CD79A, HLA-DRA",B memory,B,memory,low,remove,QC: lowest complexity (1098 genes) + highest mito (3.8%) -> low quality B
+28,328,0.13,Plasma,0.622,"IGHA1, IGHA2, IRF4, JCHAIN, IGHG4, IGHG3, IGHG2, IGHG1, MKI67, PRDM1, XBP1, ENTPD1",Plasmablast,Plasma,proliferating plasmablast,high,,JCHAIN/XBP1/PRDM1/IRF4 + high Ig + MKI67
