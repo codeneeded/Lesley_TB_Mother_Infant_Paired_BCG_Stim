@@ -246,19 +246,125 @@ print(table(seu$cell_type))
 if (!"cell_type" %in% colnames(seu@meta.data))
   stop("No 'cell_type' in object — run PHASE 2 first.")
 
-# annotated UMAPs
-ggsave(file.path(cluster_dir, "UMAP_annotation.png"),
-       DimPlot2(seu, reduction = umap_reduction, group.by = plot_group,
-                label = TRUE, repel = TRUE, label.size = 3.5) + ggtitle("Annotation"),
-       width = 14, height = 9, dpi = 300, bg = "white")
-ggsave(file.path(cluster_dir, "UMAP_annotation_vs_stim_timepoint.png"),
-       wrap_plots(
-         DimPlot2(seu, reduction = umap_reduction, group.by = plot_group,
-                  label = TRUE, repel = TRUE, label.size = 3) + ggtitle("Cell type"),
-         DimPlot2(seu, reduction = umap_reduction, group.by = condition_col) + ggtitle("Stim"),
-         DimPlot2(seu, reduction = umap_reduction, group.by = tp_col) + ggtitle("Timepoint"),
-         ncol = 3),
-       width = 26, height = 8, dpi = 300, bg = "white")
+# ---- UMAPs: built as ggplot objects, then saved (Fig 1A pattern) ----
+library(ggrepel)
+
+umap_coords <- as.data.frame(Embeddings(seu, reduction = umap_reduction))
+colnames(umap_coords) <- c("UMAP1", "UMAP2")
+umap_coords$CellType  <- seu@meta.data[[plot_group]]
+umap_coords$Stim      <- seu@meta.data[[condition_col]]
+umap_coords$Timepoint <- seu@meta.data[[tp_col]]
+
+centroids <- umap_coords %>%
+  group_by(CellType) %>%
+  summarise(UMAP1 = median(UMAP1), UMAP2 = median(UMAP2), .groups = "drop")
+
+rx      <- range(umap_coords$UMAP1, na.rm = TRUE)
+ry      <- range(umap_coords$UMAP2, na.rm = TRUE)
+span    <- max(diff(rx), diff(ry))
+alen    <- 0.13 * span                  # arrow length
+lab     <- 0.05 * span                  # axis-label offset
+x_arrow <- rx[1]                         # left edge of data
+y_arrow <- ry[1] - 0.06 * span - alen    # origin in the empty strip below the cloud
+xlim_lo <- x_arrow - lab * 2             # expand panel so arrows/labels sit in margin
+ylim_lo <- y_arrow - lab * 2
+
+ct_levels <- levels(factor(umap_coords$CellType))
+pal <- c("#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666",
+         "#1F78B4","#33A02C","#FB9A99","#E31A1C","#FDBF6F","#FF7F00","#CAB2D6","#6A3D9A",
+         "#B15928","#A6CEE3","#B2DF8A","#8DD3C7","#BEBADA","#FB8072","#80B1D3","#FDB462",
+         "#B3DE69","#FCCDE5","#BC80BD","#CCEBC5","#FFED6F","#FF1493")
+cell_cols <- setNames(pal[seq_along(ct_levels)], ct_levels)
+
+# cell type — colored labels
+p_annotation_colored <- ggplot(umap_coords, aes(x = UMAP1, y = UMAP2, color = CellType)) +
+  geom_point(size = 1, alpha = 0.7) +
+  scale_color_manual(values = cell_cols) +
+  geom_label_repel(
+    data = centroids,
+    aes(x = UMAP1, y = UMAP2, label = CellType, color = CellType),
+    fill = "white", size = 6, fontface = "bold", label.size = 0.8,
+    label.padding = unit(0.4, "lines"), box.padding = 1.2, point.padding = 0.5,
+    segment.color = "grey40", segment.size = 0.8, min.segment.length = 0,
+    max.overlaps = 25, show.legend = FALSE) +
+  annotate("segment", x = x_arrow, xend = x_arrow + alen, y = y_arrow, yend = y_arrow,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow + alen/2, y = y_arrow - lab, label = "UMAP1", size = 7, fontface = "bold") +
+  annotate("segment", x = x_arrow, xend = x_arrow, y = y_arrow, yend = y_arrow + alen,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow - lab, y = y_arrow + alen/2, label = "UMAP2", size = 7, fontface = "bold", angle = 90) +
+  theme_void() +
+  theme(legend.position = "none", plot.margin = margin(10, 10, 10, 10)) +
+  expand_limits(x = xlim_lo, y = ylim_lo) +
+  coord_fixed()
+
+ggsave(file.path(cluster_dir, "UMAP_annotation_colored.png"),
+       p_annotation_colored, width = 12, height = 11, dpi = 300, bg = "white")
+
+# cell type — black labels
+p_annotation_black <- ggplot(umap_coords, aes(x = UMAP1, y = UMAP2, color = CellType)) +
+  geom_point(size = 1, alpha = 0.7) +
+  scale_color_manual(values = cell_cols) +
+  geom_label_repel(
+    data = centroids,
+    aes(x = UMAP1, y = UMAP2, label = CellType),
+    fill = "white", color = "black", size = 6, fontface = "bold", label.size = 0.8,
+    label.padding = unit(0.4, "lines"), box.padding = 1.2, point.padding = 0.5,
+    segment.color = "grey40", segment.size = 0.8, min.segment.length = 0,
+    max.overlaps = 25, show.legend = FALSE) +
+  annotate("segment", x = x_arrow, xend = x_arrow + alen, y = y_arrow, yend = y_arrow,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow + alen/2, y = y_arrow - lab, label = "UMAP1", size = 7, fontface = "bold") +
+  annotate("segment", x = x_arrow, xend = x_arrow, y = y_arrow, yend = y_arrow + alen,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow - lab, y = y_arrow + alen/2, label = "UMAP2", size = 7, fontface = "bold", angle = 90) +
+  theme_void() +
+  theme(legend.position = "none", plot.margin = margin(10, 10, 10, 10)) +
+  expand_limits(x = xlim_lo, y = ylim_lo) +
+  coord_fixed()
+
+ggsave(file.path(cluster_dir, "UMAP_annotation_black.png"),
+       p_annotation_black, width = 12, height = 11, dpi = 300, bg = "white")
+
+# stim
+stim_lv   <- levels(factor(umap_coords$Stim))
+stim_cols <- setNames(c("#D95F02", "#1B9E77", "#7570B3")[seq_along(stim_lv)], stim_lv)
+p_stim <- ggplot(umap_coords, aes(x = UMAP1, y = UMAP2, color = Stim)) +
+  geom_point(size = 1, alpha = 0.7) +
+  scale_color_manual(values = stim_cols) +
+  annotate("segment", x = x_arrow, xend = x_arrow + alen, y = y_arrow, yend = y_arrow,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow + alen/2, y = y_arrow - lab, label = "UMAP1", size = 7, fontface = "bold") +
+  annotate("segment", x = x_arrow, xend = x_arrow, y = y_arrow, yend = y_arrow + alen,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow - lab, y = y_arrow + alen/2, label = "UMAP2", size = 7, fontface = "bold", angle = 90) +
+  theme_void() +
+  theme(plot.margin = margin(10, 10, 10, 10)) +
+  expand_limits(x = xlim_lo, y = ylim_lo) +
+  coord_fixed()
+
+ggsave(file.path(cluster_dir, "UMAP_stim.png"),
+       p_stim, width = 12, height = 11, dpi = 300, bg = "white")
+
+# timepoint
+tp_lv   <- levels(factor(umap_coords$Timepoint))
+tp_cols <- setNames(c("#7570B3", "#E6AB02", "#1B9E77")[seq_along(tp_lv)], tp_lv)
+p_timepoint <- ggplot(umap_coords, aes(x = UMAP1, y = UMAP2, color = Timepoint)) +
+  geom_point(size = 1, alpha = 0.7) +
+  scale_color_manual(values = tp_cols) +
+  annotate("segment", x = x_arrow, xend = x_arrow + alen, y = y_arrow, yend = y_arrow,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow + alen/2, y = y_arrow - lab, label = "UMAP1", size = 7, fontface = "bold") +
+  annotate("segment", x = x_arrow, xend = x_arrow, y = y_arrow, yend = y_arrow + alen,
+           arrow = arrow(length = unit(0.4, "cm"), type = "closed"), linewidth = 1.2, color = "black") +
+  annotate("text", x = x_arrow - lab, y = y_arrow + alen/2, label = "UMAP2", size = 7, fontface = "bold", angle = 90) +
+  theme_void() +
+  theme(plot.margin = margin(10, 10, 10, 10)) +
+  expand_limits(x = xlim_lo, y = ylim_lo) +
+  coord_fixed()
+
+ggsave(file.path(cluster_dir, "UMAP_timepoint.png"),
+       p_timepoint, width = 12, height = 11, dpi = 300, bg = "white")
 
 # composition by cell type
 distr <- function(group_vec, fname, w = 16)
@@ -330,4 +436,3 @@ if (run_pergene_plots) {
 }
 message("PHASE 3 done — labeled plots under ", annot_dir)
 ###############################################################################
-
