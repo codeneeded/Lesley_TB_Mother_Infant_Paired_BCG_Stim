@@ -4,3 +4,5 @@
 .Ruserdata
 saved_R_data/
 
+DGE/IGRA_pos_vs_neg_7sets/Pseudobulk_DESeq2/ALL__pseudobulk_DESeq2_LONG.csv
+*.qs2
