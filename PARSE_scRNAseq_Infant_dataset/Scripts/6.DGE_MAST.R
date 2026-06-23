@@ -83,12 +83,15 @@ target_sets <- list(
 ## Intentionally EXCLUDED: cluster 15 "CD4 T (activated/stress)" (QC-flagged:
 ## IEG/MALAT1-hi, high-mito). Add it as a set only if you chose to keep it.
 
-## ---- IGRA mapping (per donor) ----
+## ---- IGRA mapping (per donor) — INFANT IGRA at 44wk (the grouping variable) ----
+## NOTE: this is INFANT IGRA, not maternal. 6044981 = Negative (corrected
+## from a prior Positive mislabel); 6061161 = Positive (infant) is correct —
+## only its MATERNAL IGRA was wrong in the CITE-seq project. Split = 5 Neg / 5 Pos.
 igra_map <- data.frame(
   sample_id = c("6044931","6063411","6063421","6063481","6061161",
                 "6062151","6065761","6067021","6071261","6044981"),
   IGRA_status = c("Negative","Negative","Negative","Negative","Positive",
-                  "Positive","Positive","Positive","Positive","Positive"),
+                  "Positive","Positive","Positive","Positive","Negative"),
   stringsAsFactors = FALSE)
 
 ## ---- load annotated object ----
@@ -161,8 +164,8 @@ pb_meta$IGRA_status <- igra_map$IGRA_status[match(pb_meta$sample_id, igra_map$sa
 write.csv(pb_meta, file.path(pb_dir, "pseudobulk_sample_table.csv"), row.names = FALSE)
 qs_save(list(pb_mat = pb_mat, pb_meta = pb_meta), file.path(pb_dir, "pseudobulk_checkpoint.qs2"))
 message("SECTION 1 done. ", ncol(pb_mat), " pseudobulk samples x ", nrow(pb_mat), " genes.")
-print(pb_meta %>% count(target_set, stim, timepoint, IGRA_status) %>%
-        pivot_wider(names_from = IGRA_status, values_from = n, values_fill = 0))
+# donor counts per stratum (base-R; avoids tibble/dplyr print-dispatch collisions)
+print(ftable(xtabs(~ target_set + stim + timepoint + IGRA_status, data = pb_meta)))
 
 
 ## ============================================================================
@@ -246,7 +249,7 @@ spec_long <- bind_rows(spec_all)
 if (nrow(spec_long))
   write.csv(spec_long, file.path(spec_dir, "ALL__BCG_response_specific_LONG.csv"), row.names = FALSE)
 message("SECTION 3 done. BCG-response-specific genes per set x timepoint:")
-print(spec_long %>% count(set, timepoint, name = "n_bcg_specific"))
+if (nrow(spec_long)) print(table(spec_long$set, spec_long$timepoint)) else message("  (none)")
 
 
 ## ============================================================================
@@ -313,7 +316,7 @@ for (s in sets) for (tp in timepoints) {
 overlap_tbl <- bind_rows(overlap)
 write.csv(overlap_tbl, file.path(mast_dir, "OVERLAP_pseudobulk_vs_MAST.csv"), row.names = FALSE)
 message("SECTION 4 done. Pseudobulk vs MAST overlap (large MAST/pb gap = pseudoreplication):")
-print(overlap_tbl)
+print(as.data.frame(overlap_tbl))
 
 
 ## ============================================================================
